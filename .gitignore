@@ -1,0 +1,19 @@
+.DS_Store
+*.log
+
+# Local editor state
+.idea/
+.vscode/
+*.swp
+
+# Local archives and generated exports
+*.zip
+*.tar.gz
+dist/
+build/
+
+# Dependency folders if examples are later added
+node_modules/
+.venv/
+venv/
+__pycache__/
