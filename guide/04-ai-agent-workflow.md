@@ -102,7 +102,7 @@ Before asking an agent to implement, provide a context package.
 Task: TASK-004 duplicate detection
 Spec: docs/specs/lead-processing/01-product-spec.md
 Plan: docs/specs/lead-processing/02-technical-plan.md
-Requirements: FR-006, FR-007, DATA-003, SEC-002
+Requirements: FR-006, FR-007, DATA-001, SEC-002
 Relevant code: src/leads/*, src/validation/*, tests/leads/*
 Do not modify: src/salesforce/* except typed interface usage
 Commands: npm test, npm run lint

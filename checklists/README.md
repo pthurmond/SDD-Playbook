@@ -12,6 +12,7 @@ Use these checklists during intake, planning, agent prompting, code review, and 
 - [Security](security.md)
 - [Accessibility](accessibility.md)
 - [Operational readiness](operational-readiness.md)
+- [Human-in-the-loop](human-in-the-loop.md)
 - [Done checklist](done.md)
 
 ## Rubrics

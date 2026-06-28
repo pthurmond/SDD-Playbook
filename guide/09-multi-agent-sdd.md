@@ -118,6 +118,8 @@ Return blocking issues first with file/line references.
 - Reviewers should not assume the implementer followed the spec.
 - Human approval is required for requirements, architecture, security-sensitive changes, dependency additions, and production release.
 
+Use [Human-in-the-Loop SDD](10-human-in-the-loop.md) to decide which human owns each gate and what evidence they need.
+
 ## Failure Modes
 
 | Failure                                    | Fix                                                     |
@@ -131,4 +133,3 @@ Return blocking issues first with file/line references.
 ## Template
 
 Use [multi-agent-orchestration.md](../templates/multi-agent-orchestration.md) when a project needs repeatable agent roles and handoffs.
-

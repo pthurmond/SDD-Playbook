@@ -12,6 +12,7 @@ It is intentionally more rigorous than the minimal and standard examples because
 - [03-tasks.md](03-tasks.md)
 - [04-test-plan.md](04-test-plan.md)
 - [05-decisions.md](05-decisions.md)
+- [06-human-gate.md](06-human-gate.md)
 - [agent-task-prompt.md](agent-task-prompt.md)
 
 ## What This Demonstrates
@@ -22,3 +23,4 @@ It is intentionally more rigorous than the minimal and standard examples because
 - Technical planning after product clarification.
 - Task slices small enough for review.
 - AI-agent prompt boundaries for one implementation task.
+- Human approval gate before security/privacy-sensitive implementation.

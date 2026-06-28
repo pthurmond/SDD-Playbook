@@ -52,12 +52,15 @@ Clarifier -> Planner -> Test designer -> Implementer -> Reviewer -> Human approv
 
 Before handoff to human approval:
 
+- [ ] Human decision owner is named.
 - [ ] Requirement coverage is listed.
 - [ ] Tests or checks were run.
 - [ ] Spec drift is documented.
 - [ ] Open questions are classified.
 - [ ] Security/privacy constraints were reviewed.
 - [ ] Reviewer findings are resolved or accepted.
+
+Use [human-in-the-loop.md](../checklists/human-in-the-loop.md) for approval handoffs.
 
 ## Tooling
 
@@ -69,4 +72,3 @@ Before handoff to human approval:
 | CrewAI                 | Role/task orchestration                | Open source; model usage may cost.   |
 | OpenHands              | Open-source coding agent workspace     | Model usage may cost.                |
 | Aider                  | Git-aware terminal coding assistant    | Works well for one implementer loop. |
-

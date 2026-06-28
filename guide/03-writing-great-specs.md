@@ -357,7 +357,7 @@ Better:
 
 ```text
 Implement TASK-004 from docs/specs/lead-processing/03-tasks.md.
-Use requirements FR-006, FR-007, DATA-003, and SEC-002.
+Use requirements FR-006, FR-007, DATA-001, and SEC-002.
 Do not modify Salesforce submission behavior except where explicitly required.
 Add unit tests for exact email match, normalized phone match, and no-match behavior.
 Run npm test and npm run lint.
