@@ -17,8 +17,12 @@ These references provide background on spec-driven development, AI coding workfl
 
 - OpenAI Codex web documentation: https://developers.openai.com/codex/cloud
 - OpenAI Codex `AGENTS.md` guide: https://developers.openai.com/codex/guides/agents-md
-- VS Code Copilot custom instructions: https://code.visualstudio.com/docs/agent-customization/custom-instructions
+- VS Code Copilot repository instructions: https://code.visualstudio.com/docs/copilot/customization/custom-instructions
 - GitHub Docs, About GitHub Copilot cloud agent: https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent
+
+## Reusable Agent Skills
+
+- Starter SDD skill in this repo: [../skills/sdd/SKILL.md](../skills/sdd/SKILL.md)
 
 ## Research and Cautionary Notes
 

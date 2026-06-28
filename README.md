@@ -24,12 +24,25 @@ For a small internal tool, that may be one short feature spec. For a public fram
 
 ### Start Here
 
-1. Read [guide/README.md](guide/README.md) for the learning path.
+1. Try the [10-Minute Quickstart](quickstart.md).
 2. Use [decision-ladder.md](decision-ladder.md) to choose the right level of rigor.
 3. Start from [templates/README.md](templates/README.md) when writing specs.
 4. Use [checklists/README.md](checklists/README.md) during reviews.
 5. Review [examples/README.md](examples/README.md) to see different levels in practice.
-6. Read [references/re-frame2.md](references/re-frame2.md) for a high-rigor exemplar.
+6. Read [guide/README.md](guide/README.md) for the full learning path.
+
+### Choose Your Path
+
+| If you are...                                | Start with                                                                                        |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Adding one feature                           | [Minimal feature spec](templates/minimal-feature-spec.md)                                         |
+| Building a new app or durable workflow       | [Standard app spec](templates/standard-app-spec.md)                                               |
+| Building an SDK, framework, API, or protocol | [Rigorous spec corpus](templates/rigorous-spec-corpus.md)                                         |
+| Preparing work for an AI agent               | [Task brief](templates/task-brief.md) and [construction prompt](templates/construction-prompt.md) |
+| Reusing SDD behavior across agent sessions   | [SDD skill](skills/sdd/SKILL.md)                                                                  |
+| Reviewing readiness                          | [Checklists and rubrics](checklists/README.md)                                                    |
+
+For examples of weak inputs turned into usable specs, see [Before and After Examples](examples/before-after.md).
 
 ### What This Kit Provides
 
@@ -45,6 +58,7 @@ For a small internal tool, that may be one short feature spec. For a public fram
 ```text
 SDD-Playbook/
   README.md
+  quickstart.md
   decision-ladder.md
   guide/
     README.md
@@ -54,6 +68,8 @@ SDD-Playbook/
     04-ai-agent-workflow.md
     05-adoption-playbook.md
     06-glossary.md
+    07-when-not-to-use-sdd.md
+    08-agent-instructions-and-skills.md
   templates/
     README.md
     problem-statement.md
@@ -83,6 +99,7 @@ SDD-Playbook/
     rubrics.md
   examples/
     README.md
+    before-after.md
     minimal-feature-example.md
     standard-app-example.md
     lead-processing/
@@ -91,6 +108,9 @@ SDD-Playbook/
     README.md
     re-frame2.md
     external-reading.md
+  skills/
+    sdd/
+      SKILL.md
 ```
 
 ### Public Reference

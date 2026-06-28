@@ -10,6 +10,14 @@ This file provides project-level instructions for AI coding agents.
 - Prefer small, focused changes over broad refactors.
 - Do not add production dependencies without approval.
 
+## SDD instructions
+
+- Specs live in `docs/specs/` unless the project says otherwise.
+- Link implementation work to requirement IDs such as `FR-*`, `BR-*`, `DATA-*`, `SEC-*`, `OPS-*`, and `A11Y-*`.
+- Treat the approved spec and task brief as the source of truth for scope.
+- Do not implement adjacent requirements that are not part of the assigned task.
+- If approved behavior changes during implementation, update the spec or call out the drift.
+
 ## Build and test
 
 - Run the relevant unit tests after changing application logic.
@@ -50,6 +58,8 @@ Return:
 ## Tests run
 
 ## Requirement coverage
+
+## Spec drift
 
 ## Open questions
 ```
