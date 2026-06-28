@@ -43,7 +43,7 @@ For a small internal tool, that may be one short feature spec. For a public fram
 ### Repository Shape
 
 ```text
-SDD_Templating/
+SDD-Playbook/
   README.md
   decision-ladder.md
   guide/

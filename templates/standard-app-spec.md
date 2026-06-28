@@ -39,7 +39,19 @@ Explain the problem, the intended outcome, and why this app should exist.
 
 | ID   | Requirement | Priority | Verification |
 | ---- | ----------- | -------- | ------------ |
-| FR-1 |             | Must     |              |
+| FR-001 |           | Must     |              |
+
+## Business Rules
+
+| ID     | Rule | Verification |
+| ------ | ---- | ------------ |
+| BR-001 |      |              |
+
+## Non-Functional Requirements
+
+| ID      | Requirement | Verification |
+| ------- | ----------- | ------------ |
+| NFR-001 |             |              |
 
 ## Data Model
 
@@ -48,6 +60,12 @@ Describe stored, transmitted, and derived data.
 | Entity | Fields | Owner | Notes |
 | ------ | ------ | ----- | ----- |
 |        |        |       |       |
+
+## Data Requirements
+
+| ID       | Requirement | Verification |
+| -------- | ----------- | ------------ |
+| DATA-001 |             |              |
 
 ## System Boundaries
 
@@ -65,18 +83,27 @@ Describe the main components and how data flows between them.
 
 ## Security and Privacy
 
-- Authentication:
-- Authorization:
-- Sensitive data:
-- Logging and redaction:
-- Abuse cases:
+| ID      | Requirement                             | Verification |
+| ------- | --------------------------------------- | ------------ |
+| SEC-001 | Authentication and authorization:       |              |
+| SEC-002 | Sensitive data, logging, and redaction: |              |
+| SEC-003 | Abuse cases:                            |              |
 
 ## Performance and Reliability
 
-- Expected load:
-- Latency expectations:
-- Availability expectations:
-- Degraded behavior:
+| ID      | Requirement                         | Verification |
+| ------- | ----------------------------------- | ------------ |
+| OPS-001 | Expected load:                      |              |
+| OPS-002 | Latency expectations:               |              |
+| OPS-003 | Availability and degraded behavior: |              |
+
+## Accessibility
+
+Use this section for user-facing interfaces.
+
+| ID       | Requirement | Verification |
+| -------- | ----------- | ------------ |
+| A11Y-001 |             |              |
 
 ## Verification Plan
 

@@ -136,6 +136,17 @@ If the requested program is unavailable or ineligible, the system shall evaluate
 
 Campaign/DEC codes shall be preserved through processing and sent downstream when configured.
 
+## Data Requirements
+
+### DATA-001 - Hardened Duplicate Lookup Attributes
+
+The system shall store duplicate lookup attributes as normalized and hardened values rather than raw email, phone, or address data.
+
+Acceptance criteria:
+
+- Given a lead is indexed for duplicate detection, when lookup attributes are stored, then raw email, phone, and address values are not stored in the duplicate index.
+- Given duplicate detection runs, when lookup attributes are compared, then the comparison uses normalized values.
+
 ## Non-Functional Requirements
 
 ### NFR-001 - Processing Latency

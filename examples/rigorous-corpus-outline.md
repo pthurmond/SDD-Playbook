@@ -37,6 +37,64 @@ spec/
 - `construction-prompts.md` gives AI agents repeatable instructions for adding endpoints.
 - `conformance/` verifies every SDK implementation against shared fixtures.
 
+## Example Schema Surface
+
+`schemas.md` should define boundary shapes once.
+
+```json
+{
+  "ChargeCreateRequest": {
+    "amount": "integer cents, greater than 0",
+    "currency": "ISO 4217 code",
+    "idempotencyKey": "client-generated stable key",
+    "paymentMethodId": "payment method token"
+  },
+  "ChargeResponse": {
+    "id": "provider charge identifier",
+    "status": "succeeded | declined | pending",
+    "createdAt": "RFC 3339 timestamp"
+  },
+  "ErrorResponse": {
+    "code": "stable machine-readable error code",
+    "retryable": "boolean",
+    "message": "safe user-facing message"
+  }
+}
+```
+
+## Example Conformance Fixture
+
+`conformance/fixtures/idempotent-charge.json` verifies the shared idempotency contract.
+
+```json
+{
+  "fixtureId": "idempotent-charge",
+  "capabilityTags": ["charges", "idempotency"],
+  "scenario": "Two create-charge requests with the same idempotency key return the same charge.",
+  "input": {
+    "requests": [
+      {
+        "amount": 2500,
+        "currency": "USD",
+        "idempotencyKey": "idem_123",
+        "paymentMethodId": "pm_test_123"
+      },
+      {
+        "amount": 2500,
+        "currency": "USD",
+        "idempotencyKey": "idem_123",
+        "paymentMethodId": "pm_test_123"
+      }
+    ]
+  },
+  "expected": {
+    "sameChargeId": true,
+    "secondRequestCreatesNewCharge": false,
+    "error": null
+  }
+}
+```
+
 ## Completion Criteria
 
 - Every public API has a request and response schema.
