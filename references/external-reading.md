@@ -24,6 +24,15 @@ These references provide background on spec-driven development, AI coding workfl
 
 - Starter SDD skill in this repo: [../skills/sdd/SKILL.md](../skills/sdd/SKILL.md)
 
+## Free and Open-Source Agent Orchestration
+
+- AutoGen: https://microsoft.github.io/autogen/stable/
+- CrewAI: https://docs.crewai.com/
+- OpenHands: https://docs.all-hands.dev/
+- Aider: https://aider.chat/
+
+These tools can be run without paying for the tool itself, but model usage may still require a paid API or local model setup.
+
 ## Research and Cautionary Notes
 
 - "Toward Instructions-as-Code: Understanding the Impact of Instruction Files on Agentic Pull Requests" arXiv, 2026: https://arxiv.org/abs/2606.13449

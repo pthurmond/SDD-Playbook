@@ -33,14 +33,15 @@ For a small internal tool, that may be one short feature spec. For a public fram
 
 ### Choose Your Path
 
-| If you are...                                | Start with                                                                                        |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Adding one feature                           | [Minimal feature spec](templates/minimal-feature-spec.md)                                         |
-| Building a new app or durable workflow       | [Standard app spec](templates/standard-app-spec.md)                                               |
-| Building an SDK, framework, API, or protocol | [Rigorous spec corpus](templates/rigorous-spec-corpus.md)                                         |
-| Preparing work for an AI agent               | [Task brief](templates/task-brief.md) and [construction prompt](templates/construction-prompt.md) |
-| Reusing SDD behavior across agent sessions   | [SDD skill](skills/sdd/SKILL.md)                                                                  |
-| Reviewing readiness                          | [Checklists and rubrics](checklists/README.md)                                                    |
+| If you are...                                | Start with                                                                                                          |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Adding one feature                           | [Minimal feature spec](templates/minimal-feature-spec.md)                                                           |
+| Building a new app or durable workflow       | [Standard app spec](templates/standard-app-spec.md)                                                                 |
+| Building an SDK, framework, API, or protocol | [Rigorous spec corpus](templates/rigorous-spec-corpus.md)                                                           |
+| Preparing work for an AI agent               | [Task brief](templates/task-brief.md) and [construction prompt](templates/construction-prompt.md)                   |
+| Coordinating multiple agents                 | [Multi-Agent SDD](guide/09-multi-agent-sdd.md) and [orchestration template](templates/multi-agent-orchestration.md) |
+| Reusing SDD behavior across agent sessions   | [SDD skill](skills/sdd/SKILL.md)                                                                                    |
+| Reviewing readiness                          | [Checklists and rubrics](checklists/README.md)                                                                      |
 
 For examples of weak inputs turned into usable specs, see [Before and After Examples](examples/before-after.md).
 
@@ -70,6 +71,7 @@ SDD-Playbook/
     06-glossary.md
     07-when-not-to-use-sdd.md
     08-agent-instructions-and-skills.md
+    09-multi-agent-sdd.md
   templates/
     README.md
     problem-statement.md
@@ -84,6 +86,7 @@ SDD-Playbook/
     construction-prompt.md
     conformance-fixture.md
     ownership-matrix.md
+    multi-agent-orchestration.md
     agent-instructions/
   checklists/
     README.md

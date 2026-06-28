@@ -19,6 +19,7 @@ Use these templates as starting points. Choose the smallest artifact set that re
 - [Construction prompt](construction-prompt.md)
 - [Conformance fixture](conformance-fixture.md)
 - [Ownership matrix](ownership-matrix.md)
+- [Multi-agent orchestration](multi-agent-orchestration.md)
 
 ## Agent Instruction Templates
 
