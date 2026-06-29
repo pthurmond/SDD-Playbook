@@ -40,6 +40,7 @@ For a small internal tool, that may be one short feature spec. For a public fram
 | Building an SDK, framework, API, or protocol | [Rigorous spec corpus](templates/rigorous-spec-corpus.md)                                                           |
 | Preparing work for an AI agent               | [Task brief](templates/task-brief.md) and [construction prompt](templates/construction-prompt.md)                   |
 | Coordinating multiple agents                 | [Multi-Agent SDD](guide/09-multi-agent-sdd.md) and [orchestration template](templates/multi-agent-orchestration.md) |
+| Building Advanced Agent Loops                | [Advanced Orchestration Guide](guide/orchestration/README.md)                                                       |
 | Placing human review gates                   | [Human-in-the-Loop SDD](guide/10-human-in-the-loop.md) and [checklist](checklists/human-in-the-loop.md)             |
 | Reusing SDD behavior across agent sessions   | [SDD skill](skills/sdd/SKILL.md)                                                                                    |
 | Reviewing readiness                          | [Checklists and rubrics](checklists/README.md)                                                                      |
@@ -74,6 +75,13 @@ SDD-Playbook/
     08-agent-instructions-and-skills.md
     09-multi-agent-sdd.md
     10-human-in-the-loop.md
+    orchestration/
+      README.md
+      01-agentic-design-patterns.md
+      02-building-effective-agent-loops.md
+      03-programmatic-orchestration.md
+      04-ui-orchestration-tools.md
+      05-observability-and-evals.md
   templates/
     README.md
     problem-statement.md
