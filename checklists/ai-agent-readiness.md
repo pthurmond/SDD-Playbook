@@ -10,6 +10,7 @@ Before giving a task to an AI agent:
 - [ ] Security and privacy constraints are explicit.
 - [ ] Test commands are explicit.
 - [ ] Expected output format is explicit.
+- [ ] Observability/Tracing is enabled (e.g. LangSmith, Phoenix, or logging to a local folder) to measure agent drift.
 - [ ] The prompt tells the agent to stop on material ambiguity.
 - [ ] A human will review the output.
 
