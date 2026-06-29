@@ -53,6 +53,7 @@ Clarifier -> Planner -> Test designer -> Implementer -> Reviewer -> Human approv
 Before handoff to human approval:
 
 - [ ] Human decision owner is named.
+- [ ] Task briefs audited using the **Boundary Self-Check**.
 - [ ] Requirement coverage is listed.
 - [ ] Tests or checks were run.
 - [ ] Spec drift is documented.
@@ -61,6 +62,7 @@ Before handoff to human approval:
 - [ ] Reviewer findings are resolved or accepted.
 
 Use [human-in-the-loop.md](../checklists/human-in-the-loop.md) for approval handoffs.
+
 
 ## Tooling
 

@@ -14,6 +14,7 @@ It is intentionally more rigorous than the minimal and standard examples because
 - [05-decisions.md](05-decisions.md)
 - [06-human-gate.md](06-human-gate.md)
 - [agent-task-prompt.md](agent-task-prompt.md)
+- [07-agent-trace.md](07-agent-trace.md)
 
 ## What This Demonstrates
 
@@ -24,3 +25,5 @@ It is intentionally more rigorous than the minimal and standard examples because
 - Task slices small enough for review.
 - AI-agent prompt boundaries for one implementation task.
 - Human approval gate before security/privacy-sensitive implementation.
+- **End-to-End Agent Execution Trace**: Realistic agent boundary drift, security violation (PII logging), automated reviewer rejection, and successful recovery.
+

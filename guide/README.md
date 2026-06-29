@@ -14,5 +14,7 @@ This guide teaches the concepts and operating model behind spec-driven developme
 8. [Agent Instructions and SDD Skills](08-agent-instructions-and-skills.md) - how to use `AGENTS.md`, task briefs, and reusable skills together.
 9. [Multi-Agent SDD](09-multi-agent-sdd.md) - how to coordinate clarifier, planner, test, implementer, and reviewer agents.
 10. [Human-in-the-Loop SDD](10-human-in-the-loop.md) - where human judgment belongs in SDD and orchestration.
+11. [Orchestration Walkthroughs](11-orchestration-walkthroughs.md) - step-by-step setup guides for Google Gemini, OpenAI Swarm, Anthropic patterns, and OpenHands.
 
 Use the [decision ladder](../decision-ladder.md) alongside this guide to decide how much rigor a project needs.
+
