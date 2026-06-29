@@ -366,6 +366,12 @@ Fix with architecture constraints in the technical plan and PR review gates.
 
 Fix with API contracts and integration mocks.
 
+## Orchestrating these Workflows
+
+Understanding what an agent should do is step one. Step two is actually wiring them together so that the output of the Clarifier flows into the Planner, and so on.
+
+For a deep dive into building these execution loops using code or visual tools, see the [Advanced Agent Orchestration](orchestration/README.md) guides.
+
 ## The leadership pattern
 
 For technical leaders, the value is not personally hand-writing every generated task. The value is designing the system of work:

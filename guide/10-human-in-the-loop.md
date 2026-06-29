@@ -98,3 +98,9 @@ Anything more is probably process theater.
 
 Use [human-in-the-loop.md](../checklists/human-in-the-loop.md) before handing work from one stage to the next.
 
+## Next Steps: Orchestrating the Loop
+
+Once you have established where human judgment belongs, you can begin automating the agent handoffs between those gates.
+
+See the [Advanced Agent Orchestration](orchestration/README.md) subset to learn how to wire these steps together programmatically and visually while maintaining observability.
+
