@@ -53,7 +53,8 @@ For examples of weak inputs turned into usable specs, see [Before and After Exam
 - A decision ladder for choosing lightweight, standard, or rigorous specification.
 - Reusable templates for common SDD artifacts.
 - Checklists and rubrics for review gates.
-- Worked examples at multiple rigor levels.
+- Worked examples at multiple rigor levels, including an [end-to-end agent execution trace](examples/lead-processing/07-agent-trace.md) with boundary drift, security violation, and recovery.
+- A deep-dive [orchestration guide](guide/orchestration/README.md) covering agentic design patterns, workflow architectures, programmatic SDKs, UI tools, and observability.
 - References to external SDD material and `day8/re-frame2`.
 
 ### Repository Shape

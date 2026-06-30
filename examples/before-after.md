@@ -132,7 +132,63 @@ Before coding, summarize expected behavior and list blocking ambiguity.
 After coding, return files changed, tests run, requirement coverage, and open questions.
 ```
 
-## Feature Spec to Task Brief
+## Wrong Spec to Rewritten Spec (Spec-Level Failure)
+
+This shows what happens when a spec is wrong at the requirement level — not an agent boundary drift problem, but a case where the spec itself encoded a bad assumption that surfaced during clarification.
+
+Before (initial spec submitted to the Clarifier Agent):
+
+```md
+## FR-007: Low Balance Warning
+
+If a user's account balance is below $10, display a warning banner.
+```
+
+Clarifier Agent stopped with these questions:
+
+```text
+CLARIFICATION NEEDED before implementation:
+
+1. Is the $10 threshold inclusive (≤ $10) or exclusive (< $10)?
+2. Does "balance" refer to the current available balance or the settled balance?
+   These differ when there are pending transactions.
+3. Should the warning appear on all pages or only on the account dashboard?
+4. Is this per-user configurable or a system-wide constant?
+```
+
+Human investigation revealed:
+
+- The $10 rule came from a Slack message written during an incident 8 months ago.
+- Product had not reviewed it since. The actual business rule was: warn when *settled* balance drops below **$25**.
+- The $10 figure had never been validated against real churn data.
+
+After (corrected spec — written before any code was touched):
+
+```md
+## FR-007: Low Settled Balance Warning
+
+FR-007: When a user's settled account balance is less than $25.00, the account
+dashboard shall display a persistent warning banner above the transaction list.
+
+Constraints:
+- "Settled balance" excludes any pending transactions.
+- The $25.00 threshold is a system constant defined in `config/thresholds.yml`.
+  It is not user-configurable.
+- The banner is dismissed only when the settled balance rises to $25.00 or above.
+
+Non-goals:
+- Warning on non-dashboard pages (deferred to FR-012).
+- Per-user threshold customization.
+
+Verification:
+- Unit test: settled_balance = 24.99 → banner shown.
+- Unit test: settled_balance = 25.00 → no banner.
+- Unit test: pending transactions do not affect threshold calculation.
+```
+
+Why this matters:
+
+The agent stopped at the right moment. The original spec was not vague — it was *wrong*. No amount of careful implementation would have produced correct behavior. The cost was a 20-minute human investigation instead of a shipped bug and a future hot-patch.
 
 Spec requirement:
 

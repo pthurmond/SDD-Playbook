@@ -21,4 +21,4 @@ In traditional interactions with LLMs, developers write a "magic prompt" and hop
 This section builds heavily upon the thought leadership of the broader AI community:
 - **Andrew Ng (DeepLearning.AI)** on [Agentic Design Patterns](https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/)
 - **Anthropic** on [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
-- **OpenAI** on [Swarm](https://github.com/openai/swarm) for multi-agent delegation.
+- **OpenAI** on [Agents SDK](https://openai.github.io/openai-agents-python/) for multi-agent delegation and handoffs.

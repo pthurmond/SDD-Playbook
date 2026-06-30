@@ -23,7 +23,7 @@ Evals are automated tests for your agent's behavior, distinct from the unit test
 
 **How to implement Evals for SDD:**
 1. **The Dataset:** Create a small dataset of task briefs and known good source files (e.g., from the `examples/lead-processing/` folder).
-2. **The Evaluator Prompt (LLM-as-a-Judge):** Use a high-tier model (like Claude 3.5 Sonnet or GPT-4o) to evaluate the output of a faster model (like Gemini 1.5 Flash).
+2. **The Evaluator Prompt (LLM-as-a-Judge):** Use a high-capability reasoning model to evaluate the output of a faster, lower-cost model from the same or a different provider.
    - *Prompt:* "Read the agent's code output and compare it against `FR-005` in the spec. Score from 1 to 5 based on strict adherence to the spec boundaries."
 3. **Assertive Evals:** Use Python assertions to check hard constraints.
    - *Assert:* `assert "console.log(rawEmail)" not in generated_code` (Validating `SEC-002`).
