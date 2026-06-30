@@ -4,18 +4,23 @@ This file describes a practical Spec-Driven Development workflow from idea to pr
 
 ## The full lifecycle
 
-```text
+The SDD lifecycle maps closely to the 4-phase "virtual agile team" approach popularized by the **BMAD Method** (Analysis, Planning, Solutioning, Implementation).
+
+**Analysis & Planning Phase (Product Manager Persona)**
 1. Problem framing
 2. Product specification
 3. Clarification
+
+**Solutioning Phase (Architect Persona)**
 4. Technical planning
 5. Task decomposition
 6. Test design
+
+**Implementation Phase (Developer & QA Personas)**
 7. Implementation
 8. Review
 9. Release
 10. Spec maintenance
-```
 
 Each step produces or updates an artifact.
 
@@ -220,6 +225,13 @@ For each slice:
 5. Run checks.
 6. Review diff against the spec.
 7. Update the spec if an approved decision changed.
+
+### The "Delta Spec" Strategy (OpenSpec Pattern)
+
+When actively developing, editing the "master" specs continuously can create noise. Instead, adopt the **Delta Strategy** (popularized by OpenSpec):
+- Create a temporary `changes/` or `proposals/` folder for the active task.
+- Let the agent draft its task list, local design decisions, and code strictly within that scope.
+- Once the feature is tested and merged, archive the delta spec and backport the final architecture into the main `docs/specs/` directory. This keeps the main specs pristine until the code actually ships.
 
 ## 8. Review
 

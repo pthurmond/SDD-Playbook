@@ -63,15 +63,15 @@ Spec/task/test updates captured
 
 For complex work, use role separation even if one tool performs multiple roles.
 
-| Role              | Responsibility                                   |
-| ----------------- | ------------------------------------------------ |
-| Spec drafter      | Turns rough intent into structured spec          |
-| Clarifier         | Finds ambiguity, contradictions, missing cases   |
-| Architect         | Drafts technical plan and tradeoffs              |
-| Test designer     | Maps requirements to tests                       |
-| Implementer       | Writes code for one task                         |
-| Reviewer          | Checks diff against spec, tests, and constraints |
-| Security reviewer | Looks for privacy/security/compliance gaps       |
+| Role              | Agile Persona Equivalent (BMAD) | Responsibility                                   |
+| ----------------- | ------------------------------- | ------------------------------------------------ |
+| Spec drafter      | Product Manager                 | Turns rough intent into structured spec          |
+| Clarifier         | Product Manager                 | Finds ambiguity, contradictions, missing cases   |
+| Architect         | Architect                       | Drafts technical plan and tradeoffs              |
+| Test designer     | QA Engineer                     | Maps requirements to tests                       |
+| Implementer       | Developer                       | Writes code for one task                         |
+| Reviewer          | QA / Senior Dev                 | Checks diff against spec, tests, and constraints |
+| Security reviewer | Security Engineer               | Looks for privacy/security/compliance gaps       |
 
 This can be done with separate prompts, separate agent sessions, or separate people. The important point is that the implementer should not be the only reviewer of its own work.
 

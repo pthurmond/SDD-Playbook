@@ -9,6 +9,15 @@ These references provide background on spec-driven development, AI coding workfl
 - GitHub Blog, "Spec-driven development with AI: Get started with a new open source toolkit": https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/
 - Microsoft Developer Blog, "Diving Into Spec-Driven Development With GitHub Spec Kit": https://developer.microsoft.com/blog/spec-driven-development-spec-kit
 
+## Agentic SDD Frameworks & Implementations
+
+- **OpenSpec (Fission-AI)**: https://github.com/Fission-AI/OpenSpec
+  - A framework for managing "Delta Specifications." It uses isolated `changes/` folders with proposals, designs, and tasks to align on requirements before writing code, moving teams away from "vibe coding."
+- **GSD Core (open-gsd)**: https://github.com/open-gsd/gsd-core
+  - An execution loop (Discuss → Plan → Execute → Verify → Ship) designed to solve "Context Rot" by giving AI agents fresh, clean context windows for each phase of work.
+- **BMAD-METHOD (Build More Architect Dreams)**: https://github.com/bmad-code-org/BMAD-METHOD
+  - A 4-phase SDD lifecycle (Analysis, Planning, Solutioning, Implementation) that treats AI not as a chatbot, but as a virtual agile team consisting of Product Manager, Architect, Developer, and QA personas.
+
 ## SDD Maturity and Framing
 
 - Martin Fowler site, "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl": https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html

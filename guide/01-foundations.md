@@ -30,7 +30,9 @@ That makes the quality of the spec more leveraged than ever.
 
 When humans implement vague requirements, they ask clarifying questions or make assumptions. When AI agents implement vague requirements, they often make assumptions faster and with more confidence. Congratulations, you now have ambiguity at machine speed.
 
-SDD reduces that risk by forcing intent, constraints, and verification criteria into writing before implementation.
+Furthermore, relying on long, unstructured conversations with AI (often called "vibe coding") inevitably leads to **Context Rot**. As a chat window fills with noise, trial-and-error, and shifting requirements, the AI's reasoning degrades. It forgets earlier constraints and hallucinates behavior. 
+
+SDD prevents Context Rot by forcing intent, constraints, and verification criteria into a clean, durable written specification. Instead of passing an agent a massive conversational history, you pass it a pristine, bounded spec.
 
 ## Three maturity levels
 
