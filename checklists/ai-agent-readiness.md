@@ -5,14 +5,15 @@ Before giving a task to an AI agent:
 - [ ] The agent has the correct spec path.
 - [ ] The agent has the correct task ID.
 - [ ] Requirement IDs are listed.
-- [ ] Scope boundaries are explicit.
+- [ ] Scope boundaries are explicit: allowed files, tools, data, dependencies, and environments.
+- [ ] Forbidden files, credentials, production systems, and destructive actions are explicit.
 - [ ] Dependency rules are explicit.
 - [ ] Security and privacy constraints are explicit.
-- [ ] Test commands are explicit.
-- [ ] Expected output format is explicit.
-- [ ] Observability/Tracing is enabled (e.g. LangSmith, Phoenix, or logging to a local folder) to measure agent drift.
-- [ ] The prompt tells the agent to stop on material ambiguity.
-- [ ] A human will review the output.
+- [ ] Validation commands are explicit: formatter, linter, type checker or compiler, focused tests, and static, dependency, secret, accessibility, or migration checks where relevant.
+- [ ] Expected evidence and output format are explicit.
+- [ ] Tracing or audit logging is selected when the task is long-running, high-risk, or hard to reproduce.
+- [ ] The prompt tells the agent to stop on material ambiguity and consequential changes.
+- [ ] A named human owner will review the evidence and approve any release.
 
 Use this instruction for ambiguity:
 

@@ -46,18 +46,17 @@ Answer:
 ```md
 # Problem
 
-Recruiting leads are currently processed through a fragile workflow that depends on manual intervention and legacy integrations.
+Families planning an evening outside need a plain-language view of whether the night is worth attempting, what may be visible, and what information the recommendation used.
 
 ## Impact
 
-- Delayed routing to recruiters
-- Higher duplicate rates
-- Inconsistent eligibility handling
-- Limited audit visibility
+- Conflicting or stale sources can make a confident-looking recommendation dishonest.
+- A child should not need to interpret forecast charts and astronomy tables.
+- Developers and reviewers need one place to see readiness rules, source provenance, and degraded behavior.
 
 ## Desired outcome
 
-Qualified leads should be validated, deduplicated, assigned, and sent to Salesforce within 30 seconds.
+Given one location and evening, the planner explains a `go`, `caution`, `stay in`, or `unavailable` result with source freshness and limitations.
 ```
 
 ## 2. Product specification
@@ -170,18 +169,18 @@ Good SDD tasks are:
 ### Example
 
 ```md
-## TASK-004 — Add duplicate detection service
+## TASK-004 — Evaluate observation readiness
 
-Requirement links: FR-006, FR-007
+Requirement links: FR-003, BR-001, BR-002, BR-003, BR-004
 
-Implement a duplicate detection service that checks email, phone, and normalized address.
+Implement the documented precedence rules for `go`, `caution`, `stay in`, and `unavailable`.
 
 ### Done when
 
-- Duplicate check runs before Salesforce submission.
-- Duplicate matches are stored with reason codes.
-- Unit tests cover exact and normalized matches.
-- No PII is written to application logs.
+- Complete fixture inputs return the expected outcome and reason identifiers.
+- Stale, missing, malformed, and conflicting sources cannot become a confident result.
+- Tests cover every scenario in the decision table.
+- Logs contain no credentials or precise household location.
 ```
 
 ## 6. Test design
@@ -209,8 +208,8 @@ Use a requirement-to-test matrix:
 
 | Requirement |   Test type | Test name                                  | Status  |
 | ----------- | ----------: | ------------------------------------------ | ------- |
-| FR-001      |        Unit | `email_validation_rejects_invalid_format`  | Planned |
-| FR-006      | Integration | `duplicate_lead_is_not_sent_to_salesforce` | Planned |
+| FR-001 | Unit | `invalid_planning_context_stops_before_provider_call` | Planned |
+| FR-003 | Integration | `stale_weather_returns_unavailable` | Planned |
 
 ## 7. Implementation
 
@@ -291,9 +290,9 @@ docs/
       05-decisions.md
       README.md
   adr/
-    0001-use-event-driven-processing.md
+    0001-select-stargazing-framework.md
   runbooks/
-    lead-processing-failures.md
+    stargazing-provider-failures.md
 .github/
   copilot-instructions.md
 AGENTS.md
