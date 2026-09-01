@@ -1,38 +1,38 @@
 # 05 - Observability and Evals
 
-When you transition from writing code manually to managing AI agents via SDD, your role shifts from **author** to **evaluator**. You can no longer just look at the final code; you must observe *how* the agent arrived at that code to ensure it didn't hallucinate constraints or drift from the specification.
+Using an agent does not turn a developer into a spectator. It adds another job: evaluating what the agent was given, what it did, and whether the evidence supports the proposed change.
 
-This requires Agentic Observability and Evaluations (Evals).
+Observability and evaluations make that work inspectable. They are not proof that a system is correct.
 
 ## 1. Agentic Observability (Logging and Tracing)
 
-When an agent operates in a loop (like the Evaluator-Optimizer pattern), it generates intermediate steps that are usually invisible to the end user. If the agent gets stuck in an infinite loop or writes a security vulnerability, you need a trace to debug it.
+Agent loops create intermediate prompts, tool calls, files, test results, and retries that can be hard to reconstruct later. A trace can explain why the system made a bad decision, exceeded its boundary, or became stuck.
 
 **Tools to consider:**
-- **LangSmith:** Excellent for tracing complex LangGraph agent state transitions.
-- **Arize Phoenix:** Open-source platform for LLM traces and evaluation.
-- **Custom Logging:** Even simply logging the prompts and raw LLM responses to a `.agent_logs/` directory locally is a massive upgrade over a black box.
+- **LangSmith:** Tracing for LangGraph and other LLM workflows.
+- **Arize Phoenix:** Open-source tracing and evaluation tooling.
+- **Custom logging:** A small, access-controlled audit log can be enough.
+
+Treat traces as sensitive operational data. Prompts, tool output, file paths, and raw model responses can contain customer data, credentials, proprietary code, or security details. Redact what should not be retained, restrict access, and set a retention policy before logging everything into a cheerful little compliance problem.
 
 **What to trace in SDD:**
-- **The Context Window:** Exactly which spec files were injected into the prompt? Did it include the outdated technical plan?
-- **Tool Calls:** Did the agent execute `npm test`? Did it attempt to read environment variables it wasn't supposed to?
+- **Context:** Which spec files, task briefs, instructions, and data were supplied? Was a stale technical plan included?
+- **Tool calls:** Which commands, paths, network targets, and permissions were used? Did the agent attempt an unauthorized action?
 
 ## 2. Evaluations (Evals)
 
-Evals are automated tests for your agent's behavior, distinct from the unit tests for your actual application code. Because LLMs are non-deterministic, you must test whether your `task-brief.md` templates consistently produce good results.
+Evals are repeatable checks of an agent workflow. They are separate from the unit, integration, security, and operational tests for the application itself. Because model output varies, a workflow needs evidence that it respects its task boundary across representative inputs.
 
-**How to implement Evals for SDD:**
-1. **The Dataset:** Create a small dataset of task briefs and known good source files (e.g., from the `examples/lead-processing/` folder).
-2. **The Evaluator Prompt (LLM-as-a-Judge):** Use a high-capability reasoning model to evaluate the output of a faster, lower-cost model from the same or a different provider.
-   - *Prompt:* "Read the agent's code output and compare it against `FR-005` in the spec. Score from 1 to 5 based on strict adherence to the spec boundaries."
-3. **Assertive Evals:** Use Python assertions to check hard constraints.
-   - *Assert:* `assert "console.log(rawEmail)" not in generated_code` (Validating `SEC-002`).
+**How to implement evals for SDD:**
+1. **Dataset:** Collect task briefs, known-good outputs, and known failure cases. The stargazing planner's readiness fixtures show the shape, but a real project needs its own cases.
+2. **Model-based review:** A second model can flag possible gaps against `FR-003`, but it is a heuristic reviewer, not a source of truth. Keep the prompt and score as trace data, then investigate failures.
+3. **Deterministic checks:** Use assertions, parsers, schemas, static analysis, and test runners for hard constraints. For example, assert that a stale required response never becomes `go`. That catches one rule failure. It does not prove the whole recommendation is appropriate.
 
 ## 3. Measuring Agent Drift
 
-"Agent Drift" occurs when an agent slowly deviates from the spec over multiple iterations. 
+“Agent drift” is a useful label for repeated work that gradually stops following the approved spec. A missing requirement ID is a signal, not conclusive proof.
 
-To measure and prevent drift:
-- **Enforce the Human-in-the-Loop Checklists:** Use `checklists/ai-agent-readiness.md` and `checklists/human-in-the-loop.md`.
-- **Require Explicit Citations:** Force the agent to include requirement IDs in its pull request descriptions. If the PR does not map to a known `FR-` or `BR-` tag, the agent has drifted. 
-- **Automated Scope Checkers:** Write a simple script that reads the git diff and compares it to the "Allowed files" list in the task brief. Reject the run immediately if the agent touches an unapproved file.
+To detect and limit it:
+- **Use human gates:** Apply `checklists/ai-agent-readiness.md` and `checklists/human-in-the-loop.md` before consequential runs.
+- **Require traceable claims:** Ask the agent to map requirements to changed files, tests, and remaining questions. Review the mapping rather than accepting it as fact.
+- **Check scope deterministically:** Compare the diff with the allowed-files list in the task brief. Stop for review when it finds an unexpected path, then decide whether the spec or the implementation should change.

@@ -69,6 +69,7 @@ Use more rigor when:
 To understand how these principles apply in real-world scenarios, consider the following two vignettes of developers making high-pressure judgment calls:
 
 ### Scenario A: The Live Outage (Outage Mitigation vs. Ceremony)
+
 *   **Context:** The checkout API is failing for 5% of users with an unhandled database lock timeout. Cart abandonment rates are climbing.
 *   **Pressure:** The team is losing revenue every minute the issue persists.
 *   **The Decision:** **De-escalate and bypass upfront SDD.** Writing a product specification, technical plan, and review checklists under these conditions is counter-productive. 
@@ -76,6 +77,7 @@ To understand how these principles apply in real-world scenarios, consider the f
 *   **The Follow-up:** *SDD is not abandoned; it is deferred.* Once the fire is extinguished, the engineer writes a brief Architectural Decision Record (ADR) linking to the hotfix commit and updates the system's operational documentation. The temporary deviation is recorded retrospectively.
 
 ### Scenario B: The Throwaway Campaign Script (Low-Leverage Overhead)
+
 *   **Context:** The marketing team needs a script to export a CSV of users who clicked a specific campaign banner in the last 48 hours for a one-off newsletter blast tomorrow morning.
 *   **Pressure:** The newsletter must be sent by 8:00 AM.
 *   **The Decision:** **No SDD.** This task does not warrant a specification.

@@ -1,47 +1,44 @@
 # 02 - Building Effective Agent Loops
 
-Anthropic research emphasizes building agentic systems using **simple, composable patterns** rather than relying on overly complex, black-box frameworks. A core principle is distinguishing between **workflows** (orchestrated via predefined code paths) and **agents** (where the LLM dynamically directs its own process).
+Anthropic's [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) argues for simple, composable patterns over ornate black boxes. It distinguishes predictable workflows from agents that choose their own path. That distinction is a useful source, not a framework this repository claims to have invented.
 
-When implementing Spec-Driven Development, use the simplest pattern that achieves the goal.
+For SDD, start with the least autonomous pattern that gives you the evidence you need. A deterministic script or one well-scoped task is often the right answer.
 
 ## 1. Prompt Chaining
 
-**Pattern:** Decomposing a complex task into a fixed sequence of simpler subtasks. Each step processes the output of the previous one.
-**When to use in SDD:** When the sequence of events is always identical.
-**Example:** 
-1. LLM Step 1: Extract all Requirement IDs from `01-product-spec.md`.
-2. LLM Step 2: For each ID, generate three test cases.
-3. LLM Step 3: Format the test cases into a markdown table.
+**Pattern:** Break a task into a fixed sequence where each output becomes a bounded input to the next step.
+
+**When to use in SDD:** The order is stable, the inputs are known, and a human has approved the task boundary.
+
+**Example:** Extract requirement IDs from `01-product-spec.md`, draft observable checks for each ID, then format the coverage table for human review. Validate the output at every boundary. A polished Markdown table is still wrong if the source requirement was misunderstood.
 
 ## 2. Routing
 
-**Pattern:** Classifying incoming inputs and directing them to the most appropriate specialized prompt, tool set, or model tier.
-**When to use in SDD:** When triaging issues or delegating tasks based on the SDD Level required.
-**Example:** A routing agent reads a new Jira ticket. If the ticket is a major feature, it routes it to the "Level 2 Standard App Spec" workflow (triggering the Planner agent). If it is a minor typo fix, it routes to a simple "Direct Implementer" loop.
+**Pattern:** Classify an incoming item, then direct it to an appropriate known workflow, tool set, or model tier.
+
+**When to use in SDD:** Routing a typo, small bug, data migration, and security-sensitive change to the same agent loop is how you get a process that is both slow and reckless. Classify the risk first, then choose the smallest safe path. A routing decision that affects production access, money, data, or compliance needs a human owner.
 
 ## 3. Parallelization
 
-**Pattern:** Executing multiple subtasks concurrently and synthesizing the results.
-**When to use in SDD:** When tasks are independent to reduce latency.
-**Example:** After the Technical Plan is approved, you launch three concurrent agents:
-- Agent A updates the database schema.
-- Agent B writes the API contract (OpenAPI spec).
-- Agent C writes the frontend integration tests.
-Once all three finish, a Synthesizer agent reviews the entire PR.
+**Pattern:** Run genuinely independent tasks at the same time, then review the combined result.
+
+**When to use in SDD:** Only when the tasks share no mutable files, unclear contracts, or ordering dependency. Parallelizing a schema change, API change, and frontend change before the contract is settled is not speed. It is a distributed argument.
+
+**Example:** After the data contract is approved, one task can prepare a migration dry run, another can write contract tests, and another can update user-facing documentation. Give each task its own files, owner, and acceptance criteria. Reconcile the outputs before release.
 
 ## 4. Orchestrator-Workers
 
-**Pattern:** A central "orchestrator" breaks down a high-level task into smaller sub-tasks and delegates them to specialized "worker" agents. The orchestrator then synthesizes the results.
-**When to use in SDD:** When implementing an entire feature at once (Level 2 or 3 SDD).
-**Example:** The orchestrator reads `01-product-spec.md` and spins up a worker for frontend implementation, a worker for backend logic, and a worker for documentation.
+**Pattern:** One coordinator decomposes a bounded problem and gives isolated pieces to specialized workers, then a reviewer checks the whole.
+
+**When to use in SDD:** When the decomposition is obvious, the contracts are already written down, and the cost of coordination is lower than the cost of one person doing it sequentially. Keep an accountable human responsible for the boundaries. An orchestrator can assign tasks. It cannot resolve a product or architecture dispute responsibly.
 
 ## 5. Evaluator-Optimizer
 
-**Pattern:** A feedback loop where an agent generates an output, and a separate evaluator reviews and refines it iteratively until it meets specific quality criteria.
-**When to use in SDD:** This is the core **Implementer-Reviewer loop**. The Evaluator holds the `agent-task-prompt.md` constraints strictly.
-**Example:** 
-- *Optimizer*: Writes the code.
-- *Evaluator*: Runs the linter, runs the test suite, and checks if `SEC-002` (security policy) was violated. If it finds issues, it returns the error log to the Optimizer. The loop continues until the Evaluator passes.
+**Pattern:** Draft, evaluate against explicit criteria, and revise with the evaluator's findings.
+
+**When to use in SDD:** A narrow implementation task with concrete checks. Put an iteration limit and a human escape hatch on the loop. Otherwise the agent can spend a very long time rearranging the furniture.
+
+**Example:** The implementer changes one service. The evaluator runs the prescribed test subset, type checker, linter, static analysis, and secret scan, then compares the changed files with the task boundary. It reports failures with evidence. Passing those checks does not prove that `SEC-002` is satisfied, so a security-sensitive change still receives human review.
 
 ## References
 

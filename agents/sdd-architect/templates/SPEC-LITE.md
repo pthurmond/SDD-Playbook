@@ -5,21 +5,28 @@ or the requirements start needing real back-and-forth, switch to the Standard ti
 document set (PROBLEM.md, SPEC.md, DESIGN.md, TASKS.md, TEST-PLAN.md) instead.
 
 ## Problem & goal
+
 <What's needed and why, in a couple of sentences.>
 
 ## Requirements
+
 ### FR-001 — <title>
+
 **Acceptance criteria:** Given <context>, when <action>, then <result>.
 
 ### FR-002 — <title>
+
 **Acceptance criteria:** Given <context>, when <action>, then <result>.
 
 ## Approach
+
 <A short paragraph on how it'll be built — only as much "design" as this feature actually needs.>
 
 ## Tasks
+
 - [ ] T-001 — <task> (implements FR-001)
 - [ ] T-002 — <task> (implements FR-002)
 
 ## Out of scope
+
 - <item>

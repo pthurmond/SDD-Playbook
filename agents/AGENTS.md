@@ -20,11 +20,11 @@ instructions stay scoped to the package you're actually working in rather than m
 
 ## Claude Code subagents
 
-Both packages are also installed as Claude Code subagents in `.claude/agents/`
-(`access-ticket-builder.md`, `sdd-architect.md`). These are available project-wide regardless of
-which subdirectory you're in — Claude Code discovers them by walking up from the working
-directory, not by nesting like `AGENTS.md`. Invoke by name or let Claude auto-delegate based on
-each agent's `description`.
+Both packages also include Claude Code subagents in `.claude/agents/`
+(`access-ticket-builder.md`, `sdd-architect.md`). Claude Code discovers these when `agents/` is
+opened as the project root. To use them from another project, copy them to that project's
+`.claude/agents/` directory or to `~/.claude/agents/`, as described in each package README.
+Invoke by name or let Claude auto-delegate based on each agent's `description`.
 
 ## Adding a new package
 

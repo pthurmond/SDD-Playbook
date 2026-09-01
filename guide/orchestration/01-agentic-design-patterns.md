@@ -1,41 +1,32 @@
 # 01 - Agentic Design Patterns
 
-To successfully orchestrate agents around an SDD specification, you must build systems that allow the LLM to act iteratively. Relying on a single zero-shot prompt to implement a complex feature spec is a recipe for failure.
+These are four labels for thinking about agent workflows, not a maturity ladder and not a reason to build an “autonomous engineering team.” A single, well-scoped agent task can be more reliable than a complicated loop.
 
-Based on the framework popularized by **Andrew Ng**, there are four foundational design patterns for agentic workflows. When combined with SDD, these patterns transform a static document into executable software.
+Andrew Ng described reflection, tool use, planning, and multi-agent collaboration in a 2024 DeepLearning.AI article. I use that vocabulary here because it is useful, and I credit the source rather than pretending the categories are mine. The SDD-specific examples and cautions below are this repository's own application of that vocabulary.
 
 ## 1. Reflection (The Self-Correction Loop)
 
-**Concept:** The system critiques its own work to improve quality. It generates an initial output, evaluates it against specific criteria (such as the acceptance criteria in your spec), and refines the output based on that feedback.
+**Concept:** Generate a draft, inspect it against explicit criteria, then revise it.
 
-**How it applies to SDD:**
-Before an agent submits a pull request, you inject a reflection step: *"Review the code you just wrote against FR-005 in the product spec and the allowed scope in the task brief. Did you violate any constraints?"* 
-The agent will often catch its own hallucinations or scope overruns.
+**How it applies to SDD:** Before an agent submits a pull request, have it compare the diff with `FR-005`, the task brief, and the allowed files. It may catch an obvious scope overrun. Treat that as one signal, not assurance. A model can confidently approve its own mistake, which is why tests, static analysis, and independent review still matter.
 
-## 2. Tool Use (Overcoming LLM Limitations)
+## 2. Tool use
 
-**Concept:** The LLM is equipped with the ability to interact with external resources by calling APIs, searching the web, executing code in a sandbox, or reading the local file system.
+**Concept:** The model can call a bounded capability such as a test runner, code search, API, sandbox, or file reader instead of inventing an answer.
 
-**How it applies to SDD:**
-An implementer agent must have tools to read the `docs/specs/` directory, write code, run `npm test`, and execute linters. The task brief acts as the permission layer, telling the agent which tools it is allowed to use on which files.
+**How it applies to SDD:** Give an implementer only the tools and paths the task requires: perhaps the linked spec, an isolated worktree, `npm test`, and the linter. Validate arguments, keep credentials out of the context, treat tool output as untrusted input, and require a human gate for irreversible or sensitive actions. A task brief describes permission. It is not an authorization system by itself.
 
-## 3. Planning (Task Decomposition)
+## 3. Planning
 
-**Concept:** The agent breaks down complex, high-level objectives into a sequence of smaller, manageable sub-tasks. It executes these steps sequentially, adapting if a step fails.
+**Concept:** Break a complex goal into smaller steps and make the dependencies visible.
 
-**How it applies to SDD:**
-This is the core of the `Planner` role in the SDD workflow. An agent reads the `01-product-spec.md` and generates the `02-technical-plan.md` and `03-tasks.md`. The plan itself becomes the artifact that humans review before execution begins.
+**How it applies to SDD:** An agent can draft `02-technical-plan.md` and `03-tasks.md` from a product spec. A developer or technical lead still reviews the plan before it becomes work. Plans can be incomplete, based on a false assumption, or quietly turn a product question into an implementation decision. Keep them small and revisable.
 
-## 4. Multi-Agent Collaboration
+## 4. Multi-agent collaboration
 
-**Concept:** Instead of one all-knowing agent, multiple specialized agents (or model instances with different system prompts) work together. Each agent has a specific role, allowing them to collaborate, delegate, and check each other's work.
+**Concept:** Give different model runs or people distinct roles, then make their handoffs inspectable.
 
-**How it applies to SDD:**
-As seen in our Multi-Agent Orchestration templates, you separate concerns:
-- The **Clarifier Agent** looks for ambiguities.
-- The **Test Designer Agent** writes tests based on the spec.
-- The **Implementer Agent** writes code to pass the tests.
-- The **Reviewer Agent** acts as an adversarial check against the Implementer.
+**How it applies to SDD:** A clarifier can find gaps, a test designer can map requirements to observable checks, an implementer can make a narrow change, and a reviewer can compare the diff with the approved scope. More agents do not automatically mean more confidence. They add latency, cost, duplicated work, coordination failure, and the chance that one bad assumption gets repeated by several very agreeable robots. Use role separation only when it catches a specific failure a simpler loop would miss.
 
 ## References
 

@@ -1,12 +1,12 @@
 # 03 - Programmatic Orchestration
 
-To bring SDD documents to life, you need programmatic wrappers that feed specs to models and manage the handoffs. While you can use fully-featured UI tools, writing lightweight Python scripts is often the most reliable way to enforce strict agent boundaries.
+Programmatic orchestration is just code that passes bounded context between model calls and records what happened. Use it when the control you need is clear. A short script is often easier to inspect than a platform, but neither one supplies product judgment, security review, or operational ownership.
 
-Below is an expanded reference of how to build programmatic agent loops.
+The examples are illustrative, not copy-paste production loops. Verify the current SDK, model, pricing, permission model, data handling, and failure behavior with the provider before using one.
 
 ## Using the Google GenAI SDK (Native API Loops)
 
-If you want absolute control without framework overhead, you can build a raw API loop. This allows you to leverage free-tier models like **Gemini 1.5 Flash** for rapid iterations.
+If you need a small loop without a framework, call a provider API directly. Model names, limits, and prices change, so treat `Gemini 1.5 Flash` below as an example identifier, not a recommendation or a stable default.
 
 ```python
 from google import genai
@@ -34,12 +34,12 @@ def evaluator_optimizer_loop(spec: str, max_iterations=3):
         # 2. Evaluator step
         evaluator_resp = client.models.generate_content(
             model='gemini-1.5-flash',
-            contents=f"Spec:\n{spec}\n\nCode:\n{code_draft}\n\nCheck if the code perfectly meets the spec. If it does, reply exactly 'PASS'. Otherwise, list the failures.",
+            contents=f"Spec:\n{spec}\n\nCode:\n{code_draft}\n\nCompare the code with the stated requirements and constraints. Reply exactly 'PASS' only when no violation is found. Otherwise, list the failures.",
             config=types.GenerateContentConfig(temperature=0.0)
         )
         evaluation = evaluator_resp.text
         
-        if "PASS" in evaluation:
+        if evaluation.strip() == "PASS":
             print("Evaluation PASSED.")
             return code_draft
         else:
@@ -49,11 +49,11 @@ def evaluator_optimizer_loop(spec: str, max_iterations=3):
     return code_draft
 ```
 
-## OpenAI Swarm (Delegation Framework)
+## OpenAI Swarm (a handoff teaching example)
 
-[OpenAI Swarm](https://github.com/openai/swarm) is a lightweight library specifically designed to teach the "multi-agent handoff" pattern. It uses functions to pass execution from one agent persona to another.
+[OpenAI Swarm](https://github.com/openai/swarm) is a lightweight educational project for demonstrating a multi-agent handoff pattern. It is useful for learning the shape of routing. Check the project's current status and use a maintained, appropriate tool before building a production workflow.
 
-In SDD, you can use Swarm to route tasks:
+The SDD point is smaller than the library: route only a task that is already classified and bounded.
 
 ```python
 from swarm import Swarm, Agent
@@ -87,7 +87,7 @@ implementer_agent = Agent(
 
 ## LangGraph (Stateful Graphs)
 
-For production-grade agent loops that require memory, pausing for human-in-the-loop approval, and strict execution graphs, **LangGraph** (by LangChain) is the industry standard.
+For stateful loops with pause points and explicit execution graphs, LangGraph is one option. Evaluate it against the operational needs, team skills, security model, and maintenance cost of your particular system rather than treating any framework as the default.
 
 LangGraph treats the SDD workflow as a state machine:
 1. `Node: Draft Spec` -> `Node: Review Spec` -> `Conditional Edge: Approved?`
@@ -98,4 +98,4 @@ LangGraph treats the SDD workflow as a state machine:
 
 ## The Takeaway
 
-Do not start by installing massive orchestration frameworks. Start with a native API loop (like the Gemini example). When the loop becomes brittle because you need memory or complex routing, upgrade to Swarm or LangGraph. The SDD artifacts remain the same regardless of the framework.
+Do not start with a large orchestration framework. Start with the smallest controlled loop that can demonstrate value. Add state, routing, or a framework only when a specific failure or coordination problem requires it. The SDD artifacts should stay readable and reviewable regardless of the tool.

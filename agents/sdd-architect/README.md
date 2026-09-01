@@ -11,21 +11,21 @@ one from scratch — see References below.
 
 ## What's in this package
 
-| File | Purpose |
-|------|---------|
-| `sdd-architect.agent.md` | The agent definition (YAML frontmatter + system prompt). Source of truth. |
-| `AGENTS.md` | Cross-tool version for editors that read a repo-root agent file. |
-| `templates/CONSTITUTION.md` | Principles/non-negotiables that gate every other document. |
-| `templates/PROBLEM.md` | Problem framing + chosen tier. |
-| `templates/SPEC.md` | Requirements: FR-### with Given/When/Then, NFRs, out-of-scope. |
-| `templates/CLARIFICATIONS.md` | Log of the ambiguity-probing Q&A behind the spec. |
-| `templates/DESIGN.md` | Architecture/technical design, referencing FR-### throughout. |
-| `templates/TASKS.md` | Small, sequenced, reviewable tasks, each tagged with its FR-###. |
-| `templates/TEST-PLAN.md` | Acceptance test(s) per FR-###. |
-| `templates/DECISIONS.md` | Append-only ADR log. |
-| `templates/SPEC-LITE.md` | Single-file combined doc for the Minimal tier. |
-| `templates/changes/proposal.md` | Change-proposal template for modifying an already-specced project. |
-| `README.md` | This file. |
+| File                                        | Purpose                                                                   |
+|---------------------------------------------|---------------------------------------------------------------------------|
+| `../.claude/agents/sdd-architect.md`        | Claude Code agent with YAML frontmatter; source of truth.                 |
+| `AGENTS.md`                                 | Cross-tool version for editors that read a repo-root agent file.          |
+| `templates/CONSTITUTION.md`                 | Principles/non-negotiables that gate every other document.                |
+| `templates/PROBLEM.md`                      | Problem framing + chosen tier.                                            |
+| `templates/SPEC.md`                         | Requirements: FR-### with Given/When/Then, NFRs, out-of-scope.            |
+| `templates/CLARIFICATIONS.md`               | Log of the ambiguity-probing Q&A behind the spec.                         |
+| `templates/DESIGN.md`                       | Architecture/technical design, referencing FR-### throughout.             |
+| `templates/TASKS.md`                        | Small, sequenced, reviewable tasks, each tagged with its FR-###.          |
+| `templates/TEST-PLAN.md`                    | Acceptance test(s) per FR-###.                                            |
+| `templates/DECISIONS.md`                    | Append-only ADR log.                                                      |
+| `templates/SPEC-LITE.md`                    | Single-file combined doc for the Minimal tier.                            |
+| `templates/changes/proposal.md`             | Change-proposal template for modifying an already-specced project.        |
+| `README.md`                                 | This file.                                                                |
 
 ## How it works, briefly
 
@@ -62,11 +62,11 @@ Quick copy:
 ```bash
 # global
 mkdir -p ~/.claude/agents
-cp sdd-architect.agent.md ~/.claude/agents/sdd-architect.md
+cp ../.claude/agents/sdd-architect.md ~/.claude/agents/sdd-architect.md
 
 # or per-project
 mkdir -p .claude/agents
-cp sdd-architect.agent.md .claude/agents/sdd-architect.md
+cp ../.claude/agents/sdd-architect.md .claude/agents/sdd-architect.md
 ```
 
 Also copy the `templates/` folder into the project (or somewhere the agent can `Read` from) so it
@@ -85,6 +85,7 @@ Claude Code picks up new/edited subagent files within a few seconds — no resta
 - `model` — `sonnet`; change or remove to inherit the main model.
 
 ### Invoke it
+
 ```
 > Use the sdd-architect agent to spec out a new project: <describe it>
 > Use the sdd-architect agent to propose a change to the existing spec for <feature>

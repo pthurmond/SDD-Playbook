@@ -1,12 +1,18 @@
 # SDD Playbook
 
-Hi everyone, I am Patrick Thurmond. The creator of this repository. This is my attempt at providing guidance material for myself and others related to Spec Driven Development. SDD is great for laying out the details of a project you are working on or have in mind. It helps you break things down into the pieces that need to be thought through and implemented and provides clear guidance for everyone involved.
+SDD Playbook is a personal working notebook by me, Patrick Thurmond. I am exploring how clear specs, long-lasting decisions, and carefully constrained AI assistance might help teams build software without turning every idea into long and painful process.
+
+This is my attempt at providing guidance material for myself and others related to Spec Driven Development as I work to learn and master the subject myself. SDD is great for laying out the details of a project you are working on or have in mind. It helps you break things down into the pieces that need to be thought through and implemented and provides clear guidance for everyone involved.
 
 Its also pretty darn handy for guiding AI Agents to build things for you and help you maintain projects. That is what is extra powerful about it. This is a work in progress. I hope you find it helpful and enjoy what I am doing here. I intend to expand upon this as I go and work to make it better and better.
 
+This is not a claim that I use every practice in my day-to-day work. I do not. I am testing the ideas, learning where they break, and working toward the parts that earn their keep. At work, Journey-Driven Development (JDD) is the preferred framework. JDD keeps the people being served and their journeys in view while teams choose a direction, deliver a step, evaluate its impact, and use what they learn to decide what comes next. Those journeys help connect customer outcomes to requirements, architecture, and implementation. SDD can complement that work by making important build and review decisions explicit.
+
+Everything beyond my own use of JDD is personal exploration. Nothing here is a company policy, recommendation, client commitment, or official position. The examples are constructed teaching material, not client case studies or evidence that a workflow has already been adopted in production.
+
 I was inspired to create this by the work of Mike Thompson (day8) and his work on the re-frame2 project. I highly recommend checking it out if you are interested in learning more about SDD. It reminded me of work I have been doing on some of my other projects with building ARC42 documents, creating Mermaid diagrams, writing ADRs (Architectural Decision Records), and building other documentation.
 
-Thanks!
+Read [Position, Scope, and Boundaries](guide/00-position-and-scope.md) before treating the templates as a method. It covers the relationship between JDD and SDD, the limits of AI-assisted work, the developer's role, practical guardrails, and source attribution.
 
 ## Spec-Driven Development Templating
 
@@ -22,6 +28,12 @@ SDD is "write down the decisions that would otherwise be guessed during implemen
 
 For a small internal tool, that may be one short feature spec. For a public framework, distributed system, regulated workflow, or AI-built application, it may require schemas, conformance fixtures, ownership rules, construction prompts, and implementation checklists.
 
+### What a well-written spec buys you
+
+A useful spec makes the decisions that matter visible before they become expensive to change. It gives developers a reason and a boundary, gives reviewers something concrete to compare against, gives testers behavior they can observe, and gives future maintainers a record of why the system ended up this way.
+
+For AI-assisted work, a spec is a constraint, not a delegation slip. It cannot replace a developer's understanding of the domain, architecture, data, security posture, or operational consequences. The work still needs scoped access, explicit stop conditions, static analysis, linting, tests, security checks, and accountable human review.
+
 ### Start Here
 
 1. Try the [10-Minute Quickstart](quickstart.md).
@@ -30,6 +42,7 @@ For a small internal tool, that may be one short feature spec. For a public fram
 4. Use [checklists/README.md](checklists/README.md) during reviews.
 5. Review [examples/README.md](examples/README.md) to see different levels in practice.
 6. Read [guide/README.md](guide/README.md) for the full learning path.
+7. Reference the [workflow examples](workflows/README.md).
 
 ### Choose Your Path
 
@@ -53,9 +66,13 @@ For examples of weak inputs turned into usable specs, see [Before and After Exam
 - A decision ladder for choosing lightweight, standard, or rigorous specification.
 - Reusable templates for common SDD artifacts.
 - Checklists and rubrics for review gates.
-- Worked examples at multiple rigor levels, including an [end-to-end agent execution trace](examples/lead-processing/07-agent-trace.md) with boundary drift, security violation, and recovery.
+- Worked examples at multiple rigor levels: a [fixture-first, provider-normalized stargazing planner](examples/stargazing-planner/README.md), a [community garden and seed-library app](examples/community-garden/README.md), and a [minimal theatre prop and costume library](examples/community-theatre-prop-library.md).
 - A deep-dive [orchestration guide](guide/orchestration/README.md) covering agentic design patterns, workflow architectures, programmatic SDKs, UI tools, and observability.
 - References to external SDD material and `day8/re-frame2`.
+
+### Use the examples for their actual purpose
+
+The examples are fictional and intentionally separate from professional work. They currently contain specifications and deterministic fixture descriptions, not generated code or runnable reference applications. The stargazing planner is the flagship because its family-facing surface is easy to explain while its provider contracts, freshness rules, provenance, accessibility, and degraded behavior give the spec real work to do. The garden example shows standard-app rigor. The theatre example shows a focused feature without turning a reservation conflict into a 40-document ceremony.
 
 ### Repository Shape
 
@@ -66,6 +83,7 @@ SDD-Playbook/
   decision-ladder.md
   guide/
     README.md
+    00-position-and-scope.md
     01-foundations.md
     02-workflow.md
     03-writing-great-specs.md
@@ -117,7 +135,9 @@ SDD-Playbook/
     before-after.md
     minimal-feature-example.md
     standard-app-example.md
-    lead-processing/
+    stargazing-planner/
+    community-garden/
+    community-theatre-prop-library.md
     rigorous-corpus-outline.md
   references/
     README.md
@@ -135,3 +155,7 @@ This guide was informed by the structure of the `day8/re-frame2` specification c
 https://github.com/day8/re-frame2/tree/main
 
 `re-frame2` is intentionally more rigorous than most applications need. It is useful here because it demonstrates what precision looks like when a project must be implementable from specs, portable across hosts, testable by conformance fixtures, and friendly to AI-assisted development.
+
+## License and attribution
+
+This repository is shared under [Creative Commons Attribution 4.0 International](LICENSE). You may reuse and adapt it, including commercially, as long as you credit Patrick Thurmond, link to the license, and indicate meaningful changes. Source material that informed this playbook is named in [references](references/README.md); it remains its authors' work.

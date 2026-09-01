@@ -1,6 +1,6 @@
 # 10-Minute Quickstart
 
-Use this path when you want to try SDD without adopting the whole playbook.
+Use this path when you want to try SDD without adopting the whole playbook. It is a personal exploration, not a promise that a spec can replace a developer or eliminate product and technical judgment. For the work/play distinction, JDD relationship, and AI boundaries, read [Position, Scope, and Boundaries](guide/00-position-and-scope.md).
 
 ## 1. Pick the smallest useful level
 
@@ -57,18 +57,17 @@ Every task should point back to requirement IDs.
 
 ## 6. Package the agent prompt
 
-If an AI agent will implement the work, use [construction-prompt.md](templates/construction-prompt.md) or the task brief.
+If an AI agent will implement the work, use [construction-prompt.md](templates/construction-prompt.md) or the task brief. The prompt is a scoped request, not permission to change anything the agent can see.
 
 Include:
 
-- spec path;
-- technical plan path;
-- task ID;
-- requirement IDs;
-- allowed files or modules;
-- files or modules not to touch;
-- tests to run;
-- stop conditions for ambiguity.
+- spec path and technical-plan path;
+- task ID and requirement IDs;
+- allowed files, tools, data, dependencies, and deployment permissions;
+- files, modules, credentials, and systems the agent must not touch;
+- stop conditions for ambiguity, sensitive data, security, money, compliance, and architecture changes;
+- named checks: formatter, linter, type checker or compiler, focused tests, static analysis, and security or dependency scans where applicable;
+- expected evidence and the human owner who will review it.
 
 ## 7. Review against the spec
 

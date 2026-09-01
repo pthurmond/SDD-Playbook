@@ -18,6 +18,13 @@ Not allowed:
 
 - [File/component]
 
+## Execution guardrails
+
+- Allowed tools and data: [Exact tools, environments, and data classes.]
+- Forbidden tools and data: [Credentials, production systems, sensitive data, destructive commands.]
+- Stop and ask when: [Ambiguity, security/privacy impact, money, compliance, dependency, architecture, or migration change.]
+- Human owner: [Person accountable for the task and review.]
+
 ## Implementation notes
 
 - [Note]
@@ -33,8 +40,19 @@ Not allowed:
 ## Validation commands
 
 ```bash
-[command]
+[formatter]
+[linter]
+[type checker or compiler]
+[focused tests]
+[static analysis, dependency scan, secret scan, accessibility check, or migration dry run where relevant]
 ```
+
+## Evidence to return
+
+- [Exact command output or link to CI run.]
+- [Tests added or updated and what behavior they exercise.]
+- [Files changed and requirement coverage.]
+- [Known limits, skipped checks, and reasons.]
 
 ## Risks
 
@@ -47,7 +65,9 @@ Not allowed:
 ---
 
 ## Boundary Self-Check (Solo Learner Loop)
+
 Before handing this brief to an agent, verify:
+
 - [ ] **Strict File Scope**: Are allowed files specified as exact paths rather than directories where possible?
 - [ ] **Explicit Exclusions**: Have you listed files/directories the agent MUST NOT touch (e.g., database migrations, auth systems)?
 - [ ] **Stop Conditions**: Does the prompt state what the agent should do if it hits ambiguity (e.g., stop and ask)?

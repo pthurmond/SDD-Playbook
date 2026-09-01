@@ -151,7 +151,7 @@ The system shall [expected behavior].
 Example:
 
 ```text
-The system shall store an audit record for every lead processing decision.
+The system shall store an evidence record for every material observation-readiness decision.
 ```
 
 ### Event-driven requirement
@@ -165,7 +165,7 @@ When [trigger], the system shall [expected behavior].
 Example:
 
 ```text
-When address validation fails, the system shall mark the lead as `ADDRESS_UNVERIFIED`.
+When a provider response fails validation, the system shall mark that capability `invalid` and exclude it from readiness evaluation.
 ```
 
 ### State-driven requirement
@@ -179,7 +179,7 @@ While [state], the system shall [expected behavior].
 Example:
 
 ```text
-While the Salesforce integration is unavailable, the system shall queue qualified leads for retry.
+While required weather information is unavailable, the system shall return `unavailable` rather than invent a favorable recommendation.
 ```
 
 ### Optional feature requirement
@@ -193,7 +193,7 @@ Where [feature/configuration], the system shall [expected behavior].
 Example:
 
 ```text
-Where campaign code mapping is configured, the system shall attach the mapped campaign identifier to the Salesforce payload.
+Where fixture mode is configured, the system shall use named deterministic responses and make no network request.
 ```
 
 ### Unwanted behavior requirement
@@ -207,7 +207,7 @@ If [undesired condition], then the system shall [required response].
 Example:
 
 ```text
-If a duplicate lead is detected, then the system shall prevent duplicate downstream submission and record the duplicate reason.
+If a required provider response is stale, then the system shall explain that the information is too old for an honest recommendation.
 ```
 
 ## Define non-goals
@@ -219,9 +219,9 @@ Example:
 ```md
 ## Non-goals
 
-- This feature will not replace Salesforce as the system of record.
-- This feature will not build a recruiter-facing dashboard.
-- This feature will not support bulk CSV upload in phase 1.
+- This feature will not control telescopes or astrophotography equipment.
+- This feature will not guarantee visibility, safety, or enjoyment.
+- This feature will not store family accounts or exact household locations in phase 1.
 ```
 
 ## Define assumptions
@@ -233,9 +233,9 @@ Example:
 ```md
 ## Assumptions
 
-- Melissa Data is the authoritative source for address normalization.
-- Salesforce remains the downstream CRM for qualified leads.
-- Recruiting station boundaries are provided by an approved source outside this feature.
+- Fixture forecasts and target lists are invented teaching data unless the citation ledger says otherwise.
+- Provider documentation, terms, and attribution obligations are recorded before live use.
+- The family decides whether to go outside; the product provides a recommendation, not authority.
 ```
 
 ## Define constraints
@@ -259,31 +259,29 @@ Edge cases are where vague specs go to die.
 
 Use a table:
 
-| Case                                | Expected behavior                               |
-| ----------------------------------- | ----------------------------------------------- |
-| Address validation provider timeout | Queue for retry or mark pending based on policy |
-| Duplicate phone but different email | Apply duplicate scoring rule                    |
-| Applicant below minimum age         | Mark ineligible and do not send to Salesforce   |
-| Missing campaign code               | Use default attribution policy                  |
+| Weather response stale             | Return `unavailable` with a freshness explanation       |
+| Required sources conflict          | Surface the disagreement; do not choose conveniently    |
+| High precipitation probability     | Return `stay in` under the active policy                |
+| Fixture mode enabled               | Show fixture provenance and block network access        |
 
 ## Separate requirements from implementation
 
 Bad:
 
 ```md
-Create a PostgreSQL table called `lead_validation_cache` and use Redis for dedupe.
+Create a table called `weather_snapshots` and hard-code a cloud score in the component.
 ```
 
 Better product requirement:
 
 ```md
-The system shall detect duplicate leads before downstream submission.
+The system shall return one explainable observation-readiness outcome from validated provider inputs.
 ```
 
 Then in the technical plan:
 
 ```md
-Duplicate detection will use normalized email, phone, and address hashes stored in PostgreSQL. Redis is not used in phase 1 because durability and auditability are more important than sub-millisecond lookup time.
+Provider adapters normalize weather and astronomy responses into a common envelope. The readiness evaluator applies documented freshness and precedence rules before the UI receives a result.
 ```
 
 ## Write for multiple audiences
@@ -350,18 +348,12 @@ AI agents need specs that are:
 Bad agent prompt:
 
 ```text
-Build the duplicate detection feature.
-```
-
-Better:
-
-```text
-Implement TASK-004 from docs/specs/lead-processing/03-tasks.md.
-Use requirements FR-006, FR-007, DATA-001, and SEC-002.
-Do not modify Salesforce submission behavior except where explicitly required.
-Add unit tests for exact email match, normalized phone match, and no-match behavior.
-Run npm test and npm run lint.
-Return a summary of changed files and any unresolved questions.
+Implement TASK-004 from examples/stargazing-planner/05-task-breakdown.md.
+Use FR-003, BR-001, BR-002, BR-003, and BR-004.
+Do not modify provider configuration, add a live provider, or alter the decision table.
+Add tests for clear, stale, conflicting, and missing-capability fixtures.
+Run the focused test set, formatter, linter, and type checker.
+Return changed files, tests run, evidence, and unresolved questions.
 ```
 
 ## The "definition of ready" for a spec

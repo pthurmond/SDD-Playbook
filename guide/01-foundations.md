@@ -1,5 +1,7 @@
 # 01 — Foundations of Spec-Driven Development
 
+This chapter describes a set of ideas, not a magic operating model. For the personal scope of this repository, its connection to JDD, and the limits of AI-assisted delivery, read [Position, Scope, and Boundaries](00-position-and-scope.md).
+
 ## Definition
 
 **Spec-Driven Development (SDD)** is a software development approach where written specifications are treated as primary engineering artifacts. Those specs guide planning, implementation, testing, review, and maintenance.
@@ -22,17 +24,11 @@ Idea → Spec → Clarification → Plan → Tests → Code → Review → Spec 
 
 The specification is not a one-time handoff. It is a living control surface.
 
-## Why SDD matters now
+## Why SDD matters with AI
 
-SDD is not brand new. Teams have written requirements, PRDs, RFCs, ADRs, OpenAPI contracts, and test cases for years. What is different now is that AI agents can consume those artifacts and act on them.
+SDD is not new. Teams have used requirements, PRDs, RFCs, ADRs, OpenAPI contracts, and test cases for years. AI agents raise the stakes because they can turn incomplete instructions into a large set of changes before anyone has asked the second question.
 
-That makes the quality of the spec more leveraged than ever.
-
-When humans implement vague requirements, they ask clarifying questions or make assumptions. When AI agents implement vague requirements, they often make assumptions faster and with more confidence. Congratulations, you now have ambiguity at machine speed.
-
-Furthermore, relying on long, unstructured conversations with AI (often called "vibe coding") inevitably leads to **Context Rot**. As a chat window fills with noise, trial-and-error, and shifting requirements, the AI's reasoning degrades. It forgets earlier constraints and hallucinates behavior. 
-
-SDD prevents Context Rot by forcing intent, constraints, and verification criteria into a clean, durable written specification. Instead of passing an agent a massive conversational history, you pass it a pristine, bounded spec.
+Long, unstructured AI conversations can bury an earlier constraint under trial-and-error and changing requirements. A short, maintained spec gives the human and the agent the same stable reference. It reduces a particular kind of ambiguity. It does not make the model correct, understand the business, or remove the need for a developer and reviewer.
 
 ## Three maturity levels
 
@@ -143,6 +139,12 @@ DDD helps model complex business domains.
 
 SDD can use DDD concepts to make specs clearer. For example, a spec might define domain terms, bounded contexts, aggregates, invariants, and domain events.
 
+### SDD vs Journey-Driven Development
+
+Journey-Driven Development (JDD) keeps the experience, the people in it, the handoffs, and the intended outcome in view. SDD records what the system needs to do once a team has decided that the work matters.
+
+They complement each other. JDD prevents a team from optimizing a feature that does not improve the journey. SDD prevents a team from handing the implementation over as a vague wish. Neither replaces product discovery, technical design, or accountable engineering.
+
 ### SDD vs documentation
 
 Documentation explains what exists.
@@ -179,6 +181,8 @@ SDD fails when teams:
 - give agents giant context dumps instead of precise task briefs;
 - confuse "AI generated" with "done."
 
+A bad spec can make a bad decision repeatable. With an agent involved, it can make that decision repeatable at machine speed. Put security, data handling, failure behavior, scale assumptions, maintainability constraints, and recovery rules in the spec when they matter, then verify them with the right people and tools.
+
 ## The Adoption and Incentive Problem
 
 Adopting a new development methodology is primarily an **incentive and organizational problem**, not just an information problem. A Markdown playbook cannot supply the organizational consequence required to make a team stick to its ceremonies under the pressure of a looming deadline.
@@ -186,11 +190,13 @@ Adopting a new development methodology is primarily an **incentive and organizat
 To make Spec-Driven Development survive in the real world, you must align incentives based on the audience:
 
 ### 1. Solo Practitioners: The "Self-Leash"
+
 For a solo developer, the greatest risk is **impatience**. When an agent starts making rapid changes, it is tempting to bypass the discipline of writing specifications and task briefs.
 *   **The Incentive:** Writing task briefs and boundary constraints is a forcing function that protects *your own time*. Every minute spent writing a boundary check saves ten minutes of reverting messy, drifted code that touched files it shouldn't have.
 *   **Action:** Treat the "Boundary Self-Check" in the task brief template as a personal gate. Do not let yourself launch a code-generation task until the checklist is complete.
 
 ### 2. Team Adopters: Managing Skeptics & Deadlines
+
 In team environments, skeptical peers and managers will abandon SDD ceremonies the moment a deadline becomes tight if the process feels like bureaucratic overhead.
 *   **The Incentive:** Frame SDD not as "writing documentation," but as **risk mitigation and rework reduction**. The pitch is simple: *"Explicit decisions save us from late-night debugging and rewrite cycles."*
 *   **Aligning with Deadlines:** When deadlines shrink, do not insist on a Level 3 Spec Corpus. Instead, **de-escalate** to a Level 1 Minimal Feature Spec. The spec must remain the *smallest artifact that removes dangerous ambiguity*.

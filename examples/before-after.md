@@ -63,15 +63,15 @@ Why it is better:
 Before:
 
 ```md
-If Salesforce is unavailable, retry later.
+If the weather information is old, use the last forecast.
 ```
 
 After:
 
 ```md
-OPS-002: If Salesforce submission fails with a transient error, the system shall queue the lead for retry.
+BR-003: A weather response older than the configured freshness threshold shall be marked `stale` and shall not be treated as current.
 
-[NEEDS CLARIFICATION: How many retry attempts are allowed before the lead moves to the dead-letter workflow?]
+[NEEDS CLARIFICATION: Can a valid cached response support `caution`, or must the planner return `unavailable`?]
 ```
 
 ## Overbuilt Spec to Smaller Spec
@@ -98,38 +98,38 @@ The smaller version is better because there is one implementation and no public 
 Before:
 
 ```text
-Build duplicate detection.
+Build the stargazing recommendation.
 ```
 
 After:
 
 ```text
-Implement TASK-004 duplicate detection only.
+Implement TASK-004 observation-readiness evaluation only.
 
 Read:
-- docs/specs/lead-processing/01-product-spec.md
-- docs/specs/lead-processing/02-technical-plan.md
-- docs/specs/lead-processing/03-tasks.md
+- examples/stargazing-planner/01-product-spec.md
+- examples/stargazing-planner/03-readiness-decision-table.md
+- examples/stargazing-planner/04-technical-plan.md
 
 Requirement IDs:
-- FR-005
+- FR-003
+- BR-001
 - BR-002
-- DATA-001
-- SEC-002
+- BR-003
+- BR-004
 
 Allowed scope:
-- duplicate detection service
-- duplicate detection tests
-- duplicate reason code definitions if needed
+- observation-readiness evaluator
+- readiness fixtures and tests
+- stable reason-code definitions if needed
 
 Do not change:
-- Salesforce submission behavior except to consume duplicate result
-- eligibility logic
-- station assignment logic
+- provider configuration
+- live-provider adapters
+- framework ADR
 - production dependencies
 
-Before coding, summarize expected behavior and list blocking ambiguity.
-After coding, return files changed, tests run, requirement coverage, and open questions.
+After coding, return files changed, tests run, requirement coverage, evidence, and open questions.
 ```
 
 ## Wrong Spec to Rewritten Spec (Spec-Level Failure)
@@ -193,21 +193,21 @@ The agent stopped at the right moment. The original spec was not vague — it wa
 Spec requirement:
 
 ```md
-FR-005: The system shall detect duplicate leads using normalized contact and address attributes.
+FR-003: The system shall return one explainable observation-readiness outcome from validated provider inputs.
 ```
 
 Task:
 
 ```md
-## TASK-004 - Add Duplicate Detection
+## TASK-004 - Evaluate Observation Readiness
 
-Requirement links: FR-005, BR-002, DATA-001, SEC-002
+Requirement links: FR-003, BR-001, BR-002, BR-003, BR-004
 
 Done criteria:
 
-- Duplicate checks use normalized attributes.
-- Duplicate reason codes are stored.
-- Blocked duplicates are not submitted downstream.
-- Tests cover email, phone, address, and non-duplicate cases.
+- Every fixture returns exactly one documented outcome.
+- Stale and conflicting sources cannot become a confident recommendation.
+- Reasons identify the rule that determined the result.
+- Tests cover clear, cloudy, rain-likely, stale, conflict, and missing-capability cases.
 ```
 

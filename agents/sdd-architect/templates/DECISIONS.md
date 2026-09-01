@@ -6,6 +6,7 @@ change proposal. Never delete an entry; if a decision is reversed, add a new ent
 supersedes it and link back.
 
 ## ADR-001 — <Short title>
+
 **Date:** <date>
 **Status:** Proposed / Accepted / Superseded by ADR-<N>
 **Context:** <What prompted this decision — the problem, constraint, or trade-off at hand.>
@@ -14,6 +15,7 @@ supersedes it and link back.
 **Consequences:** <What this makes easier, harder, or riskier going forward.>
 
 ## ADR-002 — <Short title>
+
 **Date:** <date>
 **Status:** <...>
 **Context:** <...>
