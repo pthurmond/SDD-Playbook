@@ -65,7 +65,9 @@ Not allowed:
 ---
 
 ## Boundary Self-Check (Solo Learner Loop)
+
 Before handing this brief to an agent, verify:
+
 - [ ] **Strict File Scope**: Are allowed files specified as exact paths rather than directories where possible?
 - [ ] **Explicit Exclusions**: Have you listed files/directories the agent MUST NOT touch (e.g., database migrations, auth systems)?
 - [ ] **Stop Conditions**: Does the prompt state what the agent should do if it hits ambiguity (e.g., stop and ask)?

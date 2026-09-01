@@ -37,6 +37,8 @@ AI agents are risky when asked to:
 - update production dependencies casually;
 - "clean up" code broadly.
 
+An agent is not a substitute for the developer who understands the system. It cannot be accountable for a production incident or decide whether a product tradeoff, privacy boundary, migration, or capacity plan is acceptable. It can help produce code and evidence. A developer still has to decide what the evidence means.
+
 ## The agentic SDD loop
 
 ```text
@@ -99,16 +101,16 @@ Before asking an agent to implement, provide a context package.
 ### Example context package
 
 ```text
-Task: TASK-004 duplicate detection
-Spec: docs/specs/lead-processing/01-product-spec.md
-Plan: docs/specs/lead-processing/02-technical-plan.md
-Requirements: FR-006, FR-007, DATA-001, SEC-002
-Relevant code: src/leads/*, src/validation/*, tests/leads/*
-Do not modify: src/salesforce/* except typed interface usage
-Commands: npm test, npm run lint
+Task: TASK-004 evaluate observation readiness
+Spec: examples/stargazing-planner/01-product-spec.md
+Plan: examples/stargazing-planner/04-technical-plan.md
+Requirements: FR-003, BR-001, BR-002, BR-003, BR-004
+Relevant code: src/readiness/*, tests/readiness/*
+Do not modify: provider configuration, live-provider adapters, framework ADR
+Commands: npm test -- readiness, npm run lint, npm run typecheck
 Dependency rule: do not add runtime dependencies
-Security: do not log PII; do not store raw phone/email in duplicate index
-Expected output: code changes, tests, summary, unresolved questions
+Security: do not log credentials, raw provider payloads, or precise household locations
+Expected output: code changes, tests, evidence, unresolved questions
 ```
 
 ## Use persistent instruction files
@@ -245,15 +247,15 @@ Return blocking issues first.
 
 Do not let agents cross these gates without human review:
 
-| Gate                          | Why                                                    |
-| ----------------------------- | ------------------------------------------------------ |
-| Requirements approval         | Prevents building the wrong thing                      |
+| Gate                          | Why                                                       |
+|-------------------------------|-----------------------------------------------------------|
+| Requirements approval         | Prevents building the wrong thing                         |
 | Architecture decision         | Prevents short-term workarounds becoming permanent design |
-| Dependency addition           | Controls supply chain and maintenance risk             |
-| Security-sensitive changes    | Prevents subtle vulnerabilities                        |
-| Data model migration          | Prevents painful rollback problems                     |
-| External integration behavior | Prevents contract drift                                |
-| Production release            | Because accountability is still human                  |
+| Dependency addition           | Controls supply chain and maintenance risk                |
+| Security-sensitive changes    | Prevents subtle vulnerabilities                           |
+| Data model migration          | Prevents painful rollback problems                        |
+| External integration behavior | Prevents contract drift                                   |
+| Production release            | Because accountability is still human                     |
 
 ## Handling ambiguity
 
@@ -275,12 +277,12 @@ Use explicit scope rules:
 
 ```text
 Allowed:
-- src/leads/duplicate-detection.ts
-- tests/leads/duplicate-detection.test.ts
+- src/readiness/evaluate-observation-readiness.ts
+- tests/readiness/evaluate-observation-readiness.test.ts
 
 Not allowed:
-- Database schema changes
-- Salesforce integration changes
+- Provider configuration changes
+- Live-provider integration changes
 - New dependencies
 - Formatting unrelated files
 ```
@@ -309,31 +311,36 @@ For regulated or security-sensitive systems, also consider:
 - migration dry run
 ```
 
+These checks do different jobs. A linter catches convention and some defect classes. A type checker catches mismatched assumptions in typed surfaces. Static analysis and dependency or secret scans look for known dangerous patterns. Tests exercise selected behavior. None of them proves the system is secure, reliable, scalable, or maintainable. Match the checks to the failure you are trying to prevent, then keep a human accountable for the decision.
+
 ## Agent output format
 
-Ask agents to return structured summaries.
+Ask agents to return evidence, not a victory lap.
 
 ```md
 ## Summary
 
-- Implemented duplicate detection service.
-- Added tests for email, phone, and address matching.
+- Implemented observation-readiness evaluation.
+- Added fixture tests for clear, stale, conflicting, and missing-provider states.
 
 ## Files changed
 
-- `src/leads/duplicate-detection.ts`
-- `tests/leads/duplicate-detection.test.ts`
+- `src/readiness/evaluate-observation-readiness.ts`
+- `tests/readiness/evaluate-observation-readiness.test.ts`
 
 ## Tests run
 
-- `npm test -- duplicate-detection`
+- `npm test -- readiness`
 - `npm run lint`
+- `npm run typecheck`
 
 ## Requirement coverage
 
-- FR-006: covered
-- FR-007: covered
-- SEC-002: covered
+- FR-003: covered
+- BR-001: covered
+- BR-002: covered
+- BR-003: covered
+- BR-004: covered
 
 ## Open questions
 
@@ -374,16 +381,16 @@ For a deep dive into building these execution loops using code or visual tools, 
 
 ## The leadership pattern
 
-For technical leaders, the value is not personally hand-writing every generated task. The value is designing the system of work:
+For technical leaders, the value is not personally hand-writing every generated task. It is designing a system of work that makes assumptions visible and reviewable:
 
 ```text
-Clear specs
+clear specs
 + explicit constraints
 + small tasks
 + automated checks
 + human gates
 + maintained decisions
-= safe acceleration
+= less guessing and better evidence
 ```
 
-That is the whole game.
+It is still engineering. There is no final prompt that turns it into something else.

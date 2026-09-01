@@ -190,11 +190,13 @@ Adopting a new development methodology is primarily an **incentive and organizat
 To make Spec-Driven Development survive in the real world, you must align incentives based on the audience:
 
 ### 1. Solo Practitioners: The "Self-Leash"
+
 For a solo developer, the greatest risk is **impatience**. When an agent starts making rapid changes, it is tempting to bypass the discipline of writing specifications and task briefs.
 *   **The Incentive:** Writing task briefs and boundary constraints is a forcing function that protects *your own time*. Every minute spent writing a boundary check saves ten minutes of reverting messy, drifted code that touched files it shouldn't have.
 *   **Action:** Treat the "Boundary Self-Check" in the task brief template as a personal gate. Do not let yourself launch a code-generation task until the checklist is complete.
 
 ### 2. Team Adopters: Managing Skeptics & Deadlines
+
 In team environments, skeptical peers and managers will abandon SDD ceremonies the moment a deadline becomes tight if the process feels like bureaucratic overhead.
 *   **The Incentive:** Frame SDD not as "writing documentation," but as **risk mitigation and rework reduction**. The pitch is simple: *"Explicit decisions save us from late-night debugging and rewrite cycles."*
 *   **Aligning with Deadlines:** When deadlines shrink, do not insist on a Level 3 Spec Corpus. Instead, **de-escalate** to a Level 1 Minimal Feature Spec. The spec must remain the *smallest artifact that removes dangerous ambiguity*.

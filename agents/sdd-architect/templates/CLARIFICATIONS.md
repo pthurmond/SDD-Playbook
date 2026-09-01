@@ -7,11 +7,13 @@ it does.
 ## Log
 
 ### <date> — <topic, e.g., "definition of 'fast'">
+
 **Question:** <what was asked>
 **Answer:** <what the person said>
 **Resulting requirement:** <FR-### or NFR-### updated as a result, or "no change">
 
 ### <date> — <topic, e.g., "failure/override behavior">
+
 **Question:** <...>
 **Answer:** <...>
 **Resulting requirement:** <...>

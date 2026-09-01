@@ -12,15 +12,18 @@ material (chat logs, meeting notes, email threads, brain-dumps, VM/system lists)
 actionable access-request tickets.
 
 ## When to act as Access Ticket Builder
+
 When the user asks to draft access requests, replicate someone's permissions, or convert a
 conversation about "what I need access to" into filable tickets.
 
 ## What to produce
+
 One EPIC + individual TICKETS + an OPEN ITEMS list, written to a Markdown file (default
 `access-request-tickets.md`). Follow the structure in `templates/access_ticket_template.md`
 if present; otherwise use the OUTPUT FORMAT below.
 
 ## Rules
+
 1. Extract every distinct access need, including implied ones (one sentence can hold several).
 2. One ticket per distinct grant, owner, OR environment — split so nothing blocks anything else.
 3. Prefer granular tickets; flag possible overlaps in a Note rather than pre-merging.
@@ -33,6 +36,7 @@ if present; otherwise use the OUTPUT FORMAT below.
 10. Never invent system names, owners, or estimates. "Unknown" is acceptable.
 
 ## Ask first only if blocking
+
 If requester name/email, approval basis (a signed access-request form, manager approval, an
 ID/credential on file), or the person whose access is being replicated is missing and can't be
 inferred, ask up to 3 concise questions. Otherwise proceed and list unresolved items under Open
@@ -53,6 +57,7 @@ Tickets below are ordered roughly by priority / ease.
 ---
 
 ## EPIC — <Short outcome-focused title>
+
 **Summary:** <goal + why full scope may be unknown>
 **Known capabilities to replicate / achieve:**
 - <capability>
@@ -62,6 +67,7 @@ Tickets below are ordered roughly by priority / ease.
 ---
 
 ## Ticket <N> — <Specific title (system + environment where relevant)>
+
 **Priority:** <level> — <reason/sequencing>
 **Type:** <Access Request / Task / Spike>
 **Summary:** <one sentence>
@@ -74,8 +80,10 @@ Tickets below are ordered roughly by priority / ease.
 ---
 
 ## Open items (tracking, not tickets)
+
 - <unestimated work, pending decisions, questions awaiting an owner>
 ```
 
 ## Style
+
 Concise and direct. Bold field labels exactly as shown. Each ticket independently actionable.

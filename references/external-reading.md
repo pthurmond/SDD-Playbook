@@ -33,6 +33,22 @@ These references provide background on spec-driven development, AI coding workfl
 
 - Starter SDD skill in this repo: [../skills/sdd/SKILL.md](../skills/sdd/SKILL.md)
 
+## Agent Workflow Patterns
+
+- Andrew Ng / DeepLearning.AI, [“Four AI Agent Strategies That Improve GPT-4 and GPT-3.5 Performance”](https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/)
+  - Source for the reflection, tool use, planning, and multi-agent collaboration vocabulary referenced in the orchestration guide.
+- Anthropic, [“Building Effective Agents”](https://www.anthropic.com/research/building-effective-agents)
+  - Source for the workflow patterns discussed in the orchestration guide.
+
+## Stargazing Planner Source Candidates
+
+- [Open-Meteo Weather Forecast API](https://open-meteo.com/en/docs)
+  - Candidate weather-provider documentation. The flagship corpus records it as a source candidate, not a committed dependency.
+- [Astronomy Engine](https://github.com/cosinekitty/astronomy)
+  - Candidate open-source astronomy-calculation project with multi-language APIs and documented licensing.
+- [Stargazing planner citation ledger](../examples/stargazing-planner/07-citation-ledger.md)
+  - Shows how the examples distinguish external sources, invented fixture assumptions, and Patrick's synthesis.
+
 ## Free and Open-Source Agent Orchestration
 
 - AutoGen: https://microsoft.github.io/autogen/stable/

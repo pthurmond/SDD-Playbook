@@ -6,12 +6,12 @@ brain-dumps, VM/system lists) into granular, actionable access-request tickets i
 
 ## What's in this package
 
-| File | Purpose |
-|------|---------|
-| `access-ticket-builder.agent.md` | The agent definition (YAML frontmatter + system prompt). This is the source of truth. |
-| `AGENTS.md` | Cross-tool version for editors that read a repo-root agent file (the open standard, plural name). |
-| `templates/access_ticket_template.md` | Blank fill-in template the agent (and you) follow. |
-| `README.md` | This file. |
+| File                                            | Purpose                                                                                           |
+|-------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `../.claude/agents/access-ticket-builder.md`    | The Claude Code agent definition (YAML frontmatter + system prompt). This is the source of truth. |
+| `AGENTS.md`                                     | Cross-tool version for editors that read a repo-root agent file (the open standard, plural name). |
+| `templates/access_ticket_template.md`           | Blank fill-in template the agent (and you) follow.                                                |
+| `README.md`                                     | This file.                                                                                        |
 
 ---
 
@@ -34,11 +34,11 @@ Quick copy:
 ```bash
 # global
 mkdir -p ~/.claude/agents
-cp access-ticket-builder.agent.md ~/.claude/agents/access-ticket-builder.md
+cp ../.claude/agents/access-ticket-builder.md ~/.claude/agents/access-ticket-builder.md
 
 # or per-project
 mkdir -p .claude/agents
-cp access-ticket-builder.agent.md .claude/agents/access-ticket-builder.md
+cp ../.claude/agents/access-ticket-builder.md .claude/agents/access-ticket-builder.md
 ```
 
 Claude Code picks up new/edited subagent files within a few seconds — no restart needed. (If it
@@ -52,6 +52,7 @@ the `/agents` command.
 - `model` — `sonnet` here; change or remove to inherit the main model.
 
 ### Invoke it
+
 ```
 > Use the access-ticket-builder agent on notes.md and write the tickets to access-request-tickets.md
 ```
@@ -111,5 +112,6 @@ structure.
 ---
 
 ## References
+
 - Claude Code subagents: https://docs.claude.com/en/docs/claude-code/sub-agents
 - AGENTS.md open standard: https://agents.md

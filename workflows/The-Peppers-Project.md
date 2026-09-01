@@ -27,7 +27,7 @@ The plan includes doing static analysis for security, for which he uses [Semgrep
 
 Beyond this, Chad's process includes mutation testing. His configuration also forces agents to fix the bugs it finds and/or creates. Though he did say you need to limit the blast radius of the scanning and searching to just the context of what you are testing or what was changed. This avoids slowdowns and irrelevant context and out of context testing.
 
-One last thing Chad left me with is his own [workflow.md](exampes/peppers-workflow.md) document. You take the contents of the workflow.md file, modify it for your project, and provide it to Claude in a prompt after you setup the aforementioned brain. Then see what it comes up with.
+One last thing Chad left me with is his own [workflow.md](examples/peppers-workflow.md) document. You take the contents of the workflow.md file, modify it for your project, and provide it to Claude in a prompt after you setup the aforementioned brain. Then see what it comes up with.
 
 He did say that the first setup always has bugs and needs tuning. Beyond that, he also runs a subsession that watches the new pipeline end-to-end to help with working out those bugs. This evaluation process to ensure agents are sticking to the process can be manual, however, what Chad found works best is to have one Claude instance spin up and observe another Claude instance running the pipeline and see where it fails and gets sneaky (avoiding tools or skirting around requirements).
 

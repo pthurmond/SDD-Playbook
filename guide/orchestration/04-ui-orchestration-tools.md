@@ -1,55 +1,42 @@
 # 04 - UI Orchestration Tools
 
-While programmatic loops offer ultimate control, UI orchestration tools provide a visual workspace where developers can observe agents interacting with files, terminals, and browsers in real time. 
+UI orchestration tools make agent activity easier to watch. They do not make it safe by default. A visible terminal can still run the wrong command, expose a secret, or change more of the repository than the task allows.
 
-These platforms are excellent for the **Implementer Role** because they combine an LLM with sandboxed execution environments.
+Use a UI when it makes review and intervention easier for the developer responsible for the work. Keep the same boundaries you would use in a script: least privilege, isolated workspace, explicit tool permissions, no unnecessary credentials, and evidence from ordinary engineering checks.
 
 ## 1. OpenHands (Formerly OpenDevin)
 
-[OpenHands](https://github.com/All-In-A-Day-Work/OpenHands) is a powerful, open-source agent workspace that runs locally via Docker. It gives the agent a terminal, a browser, and file editor access.
+[OpenHands](https://docs.all-hands.dev/) is an open-source agent workspace that can run through Docker. It can give an agent a terminal, browser, and file-editor access. That is capability, not a security boundary.
 
-**How it fits into SDD:**
-You act as the orchestrator/reviewer. You feed the `agent-task-prompt.md` into the OpenHands UI. The agent reads the specs, writes the code, runs the tests in its secure sandbox, and self-corrects until the tests pass.
+**How it fits into SDD:** Give it a narrow task brief in an isolated workspace and review the diff and command history. Do not assume a sandbox is safe because it has the word “sandbox” on the tin.
 
-**Quick Setup:**
-```bash
-docker run -it \
-  --pull always \
-  -e SANDBOX_USER_ID=$UID \
-  -e WORKSPACE_BASE=$PWD \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v $PWD:/workspace \
-  -p 3000:3000 \
-  --name openhands-app \
-  ghcr.io/all-in-a-day-work/openhands:latest
-```
-Navigate to `http://localhost:3000`, attach your Claude or Gemini API key, and paste the task brief.
+**Setup warning:** Tool images, tags, configuration, and permission models change. Read the project's current documentation before installing it. Do not copy a Docker command blindly, especially one that mounts the host workspace, passes API keys, or exposes `/var/run/docker.sock`. A Docker socket can effectively hand the container control of the host. Decide what the agent may read, write, execute, and reach on the network before you start it.
 
 ## 2. Terminal-Native Assistants (Aider)
 
-[Aider](https://aider.chat/) is an AI pair programming tool that lives in your terminal. It is exceptionally good at maintaining git-aware context.
+[Aider](https://aider.chat/) is an AI pair-programming tool that runs in a terminal and understands Git context.
 
-**How it fits into SDD:**
-Aider is perfect for tight implementer loops. You can add the SDD specs to its context explicitly:
+**How it fits into SDD:** It can support a tight implementation loop when you add the relevant specs explicitly:
+
 ```bash
 aider --read docs/specs/01-product-spec.md --read docs/specs/02-technical-plan.md src/duplicate-detection.js
 ```
-Then, you give it the task brief. Aider will implement the changes and automatically commit them to a new branch for your review.
+
+Keep the task brief, allowed files, validation commands, and review gate outside the tool's optimism. Confirm what it changed, what it ran, and whether a commit actually belongs on a branch before accepting it.
 
 ## 3. IDE Agent Modes (Cursor / Windsurf / GitHub Copilot Workspace)
 
 Modern AI-native IDEs feature built-in "Agent" or "Composer" modes.
 
-**How it fits into SDD:**
-Rather than relying on the IDE agent to guess the architecture, use SDD specs to anchor it. In tools like Cursor's Composer or Windsurf's Cascade:
-1. Mention the spec files explicitly (e.g., `@docs/specs/01-product-spec.md`).
-2. Paste the `agent-task-prompt.md`.
-3. Let the IDE agent generate the multi-file edit.
-4. Run your tests locally. If they fail, paste the error back into the agent pane.
+Rather than asking an IDE agent to guess the architecture, give it the spec and the task boundary:
+
+1. Mention the approved spec files explicitly (for example, `@docs/specs/01-product-spec.md`).
+2. Include the allowed files, exclusions, stop conditions, and validation commands from `agent-task-prompt.md`.
+3. Ask for one reviewable change, then inspect the diff before accepting it.
+4. Run the specified tests, type checks, linters, static analysis, and security checks locally or in CI. Feed failures back as evidence, not as a request to “make it pass” at any cost.
 
 ## 4. Multi-Agent Framework UIs (CrewAI / AutoGen Studio)
 
-Frameworks like [CrewAI](https://crewai.com/) and Microsoft's [AutoGen Studio](https://microsoft.github.io/autogen/) provide low-code interfaces for defining agent personas (Clarifier, Architect, Implementer) and linking them together.
+Frameworks such as [CrewAI](https://crewai.com/) and Microsoft's [AutoGen Studio](https://microsoft.github.io/autogen/) provide low-code interfaces for defining roles and handoffs.
 
-**How it fits into SDD:**
-You can build the entire SDD pipeline visually. You configure the Clarifier agent to output a "Clarified Spec," which is automatically piped as input to the Architect agent. These tools are fantastic for prototyping full-team simulations before committing to a programmatic pipeline.
+**How it fits into SDD:** They can be useful for a prototype when role boundaries and artifacts are already clear. They can also hide cost, data flow, tool permissions, and failure ownership behind a pleasant diagram. Start with a manual handoff and visible artifacts. Add a visual pipeline only when it solves a real coordination problem.

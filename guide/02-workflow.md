@@ -206,10 +206,10 @@ Types of tests:
 
 Use a requirement-to-test matrix:
 
-| Requirement |   Test type | Test name                                  | Status  |
-| ----------- | ----------: | ------------------------------------------ | ------- |
-| FR-001 | Unit | `invalid_planning_context_stops_before_provider_call` | Planned |
-| FR-003 | Integration | `stale_weather_returns_unavailable` | Planned |
+| Requirement |   Test type | Test name                                             | Status  |
+|-------------|------------:|-------------------------------------------------------|---------|
+| FR-001      |        Unit | `invalid_planning_context_stops_before_provider_call` | Planned |
+| FR-003      | Integration | `stale_weather_returns_unavailable`                   | Planned |
 
 ## 7. Implementation
 

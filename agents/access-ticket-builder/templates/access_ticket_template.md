@@ -67,6 +67,7 @@ Tickets below are ordered roughly by priority / ease.
 ---
 
 ## Open items (tracking, not tickets)
+
 - <Unestimated work / follow-ups needed>
 - <Decisions still pending>
 - <Questions awaiting an owner's answer>
