@@ -2,7 +2,7 @@
 
 SDD Playbook is a personal working notebook by me, Patrick Thurmond. I am exploring how clear specs, long-lasting decisions, and carefully constrained AI assistance might help teams build software without turning every idea into long and painful process.
 
-This is my attempt at providing guidance material for myself and others related to Spec Driven Development. SDD is great for laying out the details of a project you are working on or have in mind. It helps you break things down into the pieces that need to be thought through and implemented and provides clear guidance for everyone involved.
+This is my attempt at providing guidance material for myself and others related to Spec Driven Development as I work to learn and master the subject myself. SDD is great for laying out the details of a project you are working on or have in mind. It helps you break things down into the pieces that need to be thought through and implemented and provides clear guidance for everyone involved.
 
 Its also pretty darn handy for guiding AI Agents to build things for you and help you maintain projects. That is what is extra powerful about it. This is a work in progress. I hope you find it helpful and enjoy what I am doing here. I intend to expand upon this as I go and work to make it better and better.
 
