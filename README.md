@@ -6,7 +6,7 @@ This is my attempt at providing guidance material for myself and others related 
 
 Its also pretty darn handy for guiding AI Agents to build things for you and help you maintain projects. That is what is extra powerful about it. This is a work in progress. I hope you find it helpful and enjoy what I am doing here. I intend to expand upon this as I go and work to make it better and better.
 
-This is not a claim that I use every practice in my day-to-day work. I do not. I am testing the ideas, learning where they break, and working toward the parts that earn their keep. At work, Journey-Driven Development (JDD) is the framework that is preferred. With JDD you work to understand the people, their journey, the friction, and the outcome before getting lost in implementation detail. SDD can complement that work by making build and review decisions explicit.
+This is not a claim that I use every practice in my day-to-day work. I do not. I am testing the ideas, learning where they break, and working toward the parts that earn their keep. At work, Journey-Driven Development (JDD) is the preferred framework. JDD keeps the people being served and their journeys in view while teams choose a direction, deliver a step, evaluate its impact, and use what they learn to decide what comes next. Those journeys help connect customer outcomes to requirements, architecture, and implementation. SDD can complement that work by making important build and review decisions explicit.
 
 Everything beyond my own use of JDD is personal exploration. Nothing here is a company policy, recommendation, client commitment, or official position. The examples are constructed teaching material, not client case studies or evidence that a workflow has already been adopted in production.
 
