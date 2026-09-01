@@ -42,6 +42,7 @@ For AI-assisted work, a spec is a constraint, not a delegation slip. It cannot r
 4. Use [checklists/README.md](checklists/README.md) during reviews.
 5. Review [examples/README.md](examples/README.md) to see different levels in practice.
 6. Read [guide/README.md](guide/README.md) for the full learning path.
+7. Reference the [workflow examples](workflows/README.md).
 
 ### Choose Your Path
 
