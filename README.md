@@ -14,6 +14,15 @@ I was inspired to create this by the work of Mike Thompson (day8) and his work o
 
 Read [Position, Scope, and Boundaries](guide/00-position-and-scope.md) before treating the templates as a method. It covers the relationship between JDD and SDD, the limits of AI-assisted work, the developer's role, practical guardrails, and source attribution.
 
+## Broader delivery framework (working draft)
+
+[Spec-Driven Delivery](guide/spec-driven-delivery-framework.md) captures my developing AI-enabled methodology for software, visual production, content, analysis, and other deliverables.
+
+**Delivery:** Explore → Define → Bound → Review → Build → Verify → Experience → Refine  
+**Improvement:** Observe → Generalize → Codify → Reuse
+
+The framework emphasizes collaborative specification, authoritative references, broad autonomy within human-reviewed boundaries, and human experience of the result. The existing software guides supply engineering practices within that broader model. Stage minimums and client templates are still being developed.
+
 ## Spec-Driven Development Templating
 
 Spec-Driven Development (SDD) is a practical way to turn intent into buildable software by making decisions explicit before implementation starts.
