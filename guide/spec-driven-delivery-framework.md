@@ -138,7 +138,7 @@ At the start of a new engagement, establish the client's context afresh. Reuse a
 
 Patrick's Corbin & Milo comic work provides a non-software illustration of this method. These mappings capture the pattern discussed during framework development; they are not a claim that the framework depends on software artifacts.
 
-Reference project: [Corbin-The-Scientist comic script](https://github.com/pthurmond/Corbin-The-Scientist/blob/master/Story%20-%20Comic%20Script.md).
+Reference project: Corbin-The-Scientist comic script (private repo).
 
 | Comic specification element | Delivery pattern |
 | --- | --- |
